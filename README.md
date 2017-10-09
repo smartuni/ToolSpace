@@ -5,7 +5,8 @@ Tool Space ist eine Management-System zur Überwachung einer Werkzeugentleihstat
 # Planungsübersicht
 ![Planungsübersicht](/Planungs%C3%BCbersicht_ToolSpace.png)
 # Test ToDos
-- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
+- [x] README.md erstellen
+- [x] Milestone 1: Präsentation des Projekts
 - [x] list syntax required (any unordered or ordered list supported)
 - [x] this is a complete item
 - [ ] this is an incomplete item
