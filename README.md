@@ -14,7 +14,7 @@ To return the tools, the user only has to place the tool back to the tool wall.
 
 **Toolwall**
   
-  - A: Tool with NFC tag (hammer)
+  - A: Tool with NFC tag (:hammer:)
   - B: Tool with NFC tag (chisel)
   - C: bold scale
   - D: gauge with NFC tag, reading device
@@ -37,7 +37,3 @@ To return the tools, the user only has to place the tool back to the tool wall.
 - [x] list syntax required (any unordered or ordered list supported)
 - [x] this is a complete item
 - [ ] this is an incomplete item
-:+1:
-:rocket:
-:hammer:
-:tool:
