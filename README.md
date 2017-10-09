@@ -6,7 +6,7 @@ WS 2017/18 - RIOT im Internet of Things - Bachelor Project of Computer Science a
   
 ToolSpace is a management system for monitoring and administration of a tool workspace.
 The goal is to develop a system, wich can be easy installed and manage diffrent tools in a comfortable and smart way.
-At the entrance of the workspace the user sign in by NFC. To rent a tool, the user first loggs into the rental terminal, afterwards he scan the required tools.
+At the entrance of the workspace, the user sign in by NFC. To rent a tool, the user first loggs into the rental terminal, afterwards he scan the required tools.
 Every tool and every user has his unigue NFC tag. 
 To return the tools, the user only has to place the tool back to the tool wall.
         
