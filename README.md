@@ -12,7 +12,7 @@ To return the tools, the user only has to place the tool back to the tool wall.
         
 ![](/images/ToolSpace_Uebersicht.PNG)
     
-# Planungsübersicht
+# System overview
 ![Planungsübersicht](images/Planungs%C3%BCbersicht_ToolSpace.png)
 # Test ToDos
 - [x] README.md erstellen
