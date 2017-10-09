@@ -11,14 +11,23 @@ Every tool and every user has his unigue NFC tag.
 To return the tools, the user only has to place the tool back to the tool wall.
         
 ![](/images/ToolSpace_Uebersicht.PNG)
+
+**Toolwall**
+  
+  -A: Tool with NFC tag (hammer)
+  -B: Tool with NFC tag ()
+  -C: weight calculatur
+  -D: gauge with NFC tag, reading device
+  -E: 
+  
+
+
     
 # System overview
-  
 ![Planungsübersicht](images/Planungs%C3%BCbersicht_ToolSpace.png)
-  
-# ToDos im Überblick
+# Test ToDos
 - [x] README.md erstellen
-- [ ] Milestones:
+- [x] Milestones:
   - [ ] Präsentation des Projekts
   - [ ] First Mock-Up Demo
   - [ ] Release Candidate 1
