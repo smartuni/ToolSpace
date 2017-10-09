@@ -13,10 +13,12 @@ To return the tools, the user only has to place the tool back to the tool wall.
 ![](/images/ToolSpace_Uebersicht.PNG)
     
 # System overview
+  
 ![Planungsübersicht](images/Planungs%C3%BCbersicht_ToolSpace.png)
-# Test ToDos
+  
+# ToDos im Überblick
 - [x] README.md erstellen
-- [x] Milestones:
+- [ ] Milestones:
   - [ ] Präsentation des Projekts
   - [ ] First Mock-Up Demo
   - [ ] Release Candidate 1
