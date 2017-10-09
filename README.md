@@ -3,10 +3,10 @@ WS 2017/18 - RIOT im Internet of Things - Bachelor Project of Computer Science a
 # Was ist Tool Space?
 Tool Space ist eine Management-System zur Überwachung einer Werkzeugentleihstation. Es ist leicht in einer Werkstatt zu installieren und einfach zu managen. Über ein Loginportal meldet man sich in der Werkstatt an. Wenn nun Werkzeuge entliehen werden sollen, wird der User-NFC-Chip an das Ausleihterminal gehalten und dann die einzelnen Werkzeuge eingescannt. Zum Zurückgeben müssen die Geräte nur in die entsprechenden Fächer gelegt werden.
   
-![](/ToolSpace_Uebersicht.PNG)
+![](/images/ToolSpace_Uebersicht.PNG)
     
 # Planungsübersicht
-![Planungsübersicht](/Planungs%C3%BCbersicht_ToolSpace.png)
+![Planungsübersicht](images/Planungs%C3%BCbersicht_ToolSpace.png)
 # Test ToDos
 - [x] README.md erstellen
 - [x] Milestone 1: Präsentation des Projekts
