@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="Spring-4.3.12.RELEASE" type="spring">
+    <properties version="4.3.12.RELEASE" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-instrument-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-context-support-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-expression-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-aspects-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-instrument-tomcat-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-aop-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-messaging-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-jdbc-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-oxm-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-jms-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-beans-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-orm-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-test-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-core-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/aopalliance-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-tx-4.3.12.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/backend_1/lib/spring-context-4.3.12.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
