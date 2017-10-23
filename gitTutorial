@@ -1,0 +1,9 @@
+git clone https://github.com/smartuni/ToolSpace ||(master)
+git clone -b sensorik https://github.com/smartuni/ToolSpace ||(sensorik)
+
+git fetch
+git pull
+
+git add --all
+git commit -m "Hier steht die commit Message"
+git push origin sensorik
