@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d5646de-aca1-4674-b2cc-64097f1fbc14" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+    <list default="true" id="0d5646de-aca1-4674-b2cc-64097f1fbc14" name="Default" comment="created image folder">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/.gradle/2.13/taskArtifacts/cache.properties.lock" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/.gradle/2.13/taskArtifacts/fileHashes.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/.gradle/2.13/taskArtifacts/fileSnapshots.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/.gradle/2.13/taskArtifacts/taskArtifacts.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/.mvn/wrapper/maven-wrapper.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/classes/main/hello/Application.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/classes/main/hello/Greeting.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/classes/main/hello/GreetingController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/classes/test/hello/GreetingControllerTests.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/libs/gs-rest-service-0.1.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/libs/gs-rest-service-0.1.0.jar.original" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/test-results/binary/test/output.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/test-results/binary/test/output.bin.idx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/test-results/binary/test/results.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/gradle/wrapper/gradle-wrapper.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/.gradle/2.13/taskArtifacts/cache.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/.mvn/wrapper/maven-wrapper.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/reports/tests/classes/hello.GreetingControllerTests.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/reports/tests/css/base-style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/reports/tests/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/reports/tests/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/reports/tests/js/report.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/reports/tests/packages/hello.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/test-results/TEST-hello.GreetingControllerTests.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/build/tmp/jar/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/gradle/wrapper/gradle-wrapper.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/gradlew" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/gradlew.bat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/manifest.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/mvnw" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/mvnw.cmd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/src/main/java/hello/Application.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/src/main/java/hello/Greeting.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/src/main/java/hello/GreetingController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hello/src/test/java/hello/GreetingControllerTests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -74,8 +113,8 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="222">
+              <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -494,53 +533,28 @@
             <path>
               <item name="ToolSpace" type="b2602c69:ProjectViewProjectNode" />
               <item name="ToolSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="hello" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ToolSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ToolSpace" type="462c0819:PsiDirectoryNode" />
+              <item name="hello" type="462c0819:PsiDirectoryNode" />
               <item name=".gradle" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ToolSpace" type="b2602c69:ProjectViewProjectNode" />
               <item name="ToolSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="hello" type="462c0819:PsiDirectoryNode" />
               <item name=".gradle" type="462c0819:PsiDirectoryNode" />
               <item name="2.13" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ToolSpace" type="b2602c69:ProjectViewProjectNode" />
               <item name="ToolSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="hello" type="462c0819:PsiDirectoryNode" />
               <item name=".gradle" type="462c0819:PsiDirectoryNode" />
               <item name="2.13" type="462c0819:PsiDirectoryNode" />
               <item name="taskArtifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ToolSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ToolSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ToolSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ToolSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="ToolSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ToolSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ToolSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ToolSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="hello" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -564,6 +578,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Elton\IdeaProjects\ToolSpace\hello" />
       <recent name="C:\Users\Elton\IdeaProjects\ToolSpace\backend" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -756,11 +771,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508956034163</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="created image folder">
+      <created>1508957809330</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1508957809330</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6691000" />
+    <option name="totallyTimeSpent" value="7091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -779,10 +801,10 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32916668" sideWeight="0.5127932" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32916668" sideWeight="0.5170576" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.48507464" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32916668" sideWeight="0.48720682" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32916668" sideWeight="0.48294243" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.48720682" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.4936034" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.48507464" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1006,8 +1028,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="222">
+          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
           <folding />
         </state>
       </provider>
