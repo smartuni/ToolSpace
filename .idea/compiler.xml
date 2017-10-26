@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="backend_main" target="1.8" />
       <module name="backend_test" target="1.8" />
+      <module name="hello_main" target="1.8" />
+      <module name="hello_test" target="1.8" />
       <module name="lalaland_main" target="1.8" />
       <module name="lalaland_test" target="1.8" />
     </bytecodeTargetLevel>
