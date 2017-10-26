@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 class ApplicationFacadeController {
@@ -24,10 +25,18 @@ class ApplicationFacadeController {
     private UserRepository userRepository;
 
 
-    @RequestMapping("/user")
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public List<User> getAllUser(){
         return userRepository.findAll();
     }
+
+    @RequestMapping(value = "/user/{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public Optional<User> getUserByName(@RequestParam("name") String name){
+        return userRepository.findByName(name);
+    }
+
+
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     @ResponseBody
