@@ -29,6 +29,18 @@ class ApplicationFacadeController {
         return userRepository.findAll();
     }
 
+    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @ResponseBody
+    public User updateUser(@RequestParam String name, @RequestParam String u_lvl, @RequestParam String time){
+        User n = new User();
+        n.setName(name);
+        n.setU_lvl(u_lvl);
+        n.setTime(time);
+        userRepository.save(n);
+
+    }
+
+
     @RequestMapping("/tools")
     public List<Tools> getAllTools(){
         return toolsRepository.findAll();
