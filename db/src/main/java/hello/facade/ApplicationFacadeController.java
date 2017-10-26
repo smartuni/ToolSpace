@@ -37,7 +37,7 @@ class ApplicationFacadeController {
         n.setU_lvl(u_lvl);
         n.setTime(time);
         userRepository.save(n);
-
+        return n;
     }
 
 
