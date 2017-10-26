@@ -6,10 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend_main.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/backend_test.iml" group="backend" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello.iml" filepath="$PROJECT_DIR$/.idea/modules/hello.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello_main.iml" filepath="$PROJECT_DIR$/.idea/modules/hello_main.iml" group="hello" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello_test.iml" filepath="$PROJECT_DIR$/.idea/modules/hello_test.iml" group="hello" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web.iml" filepath="$PROJECT_DIR$/.idea/modules/web.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/web_main.iml" group="web" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/web_test.iml" group="web" />
     </modules>
