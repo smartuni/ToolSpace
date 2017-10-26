@@ -9,6 +9,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello.iml" filepath="$PROJECT_DIR$/.idea/modules/hello.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello_main.iml" filepath="$PROJECT_DIR$/.idea/modules/hello_main.iml" group="hello" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello_test.iml" filepath="$PROJECT_DIR$/.idea/modules/hello_test.iml" group="hello" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web.iml" filepath="$PROJECT_DIR$/.idea/modules/web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/web_main.iml" group="web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/web_test.iml" group="web" />
     </modules>
   </component>
 </project>
