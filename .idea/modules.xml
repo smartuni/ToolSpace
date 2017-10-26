@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend_main.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/backend_test.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/db.iml" filepath="$PROJECT_DIR$/.idea/modules/db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db_main.iml" filepath="$PROJECT_DIR$/.idea/modules/db_main.iml" group="db" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db_test.iml" filepath="$PROJECT_DIR$/.idea/modules/db_test.iml" group="db" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello_main.iml" filepath="$PROJECT_DIR$/.idea/modules/hello_main.iml" group="hello" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello_test.iml" filepath="$PROJECT_DIR$/.idea/modules/hello_test.iml" group="hello" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/web_main.iml" group="web" />
