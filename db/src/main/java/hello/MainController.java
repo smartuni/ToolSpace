@@ -19,7 +19,7 @@ public class MainController {
 	
 	@GetMapping(path="/add") // Map ONLY GET Requests
 	public @ResponseBody String addNewUser (@RequestParam String name
-			, @RequestParam int u_lvl, @RequestParam Long time) {
+			, @RequestParam String u_lvl, @RequestParam String time) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
 		

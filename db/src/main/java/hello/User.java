@@ -13,23 +13,23 @@ public class User {
 
     private String name;
 
-    private Integer u_lvl;
+    private String u_lvl;
 
-    private Long time;
+    private String time;
 
-	public Long getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Long time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
-	public Integer getU_lvl() {
+	public String getU_lvl() {
 		return u_lvl;
 	}
 
-	public void setU_lvl(Integer u_lvl) {
+	public void setU_lvl(String u_lvl) {
 		this.u_lvl = u_lvl;
 	}
 
