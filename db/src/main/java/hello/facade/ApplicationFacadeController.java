@@ -1,9 +1,6 @@
 package hello.facade;
 
-import hello.UserRepository;
-import hello.ToolsRepository;
-import hello.User;
-import hello.Tools;
+import hello.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,19 +21,21 @@ class ApplicationFacadeController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SensorRepository sensorRepository;
+
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public List<User> getAllUser(){
         return userRepository.findAll();
     }
-
+/*
     @RequestMapping(value = "/user/{name}", method = RequestMethod.GET)
     @ResponseBody
     public Optional<User> getUserByName(@RequestParam("name") String name){
         return userRepository.findByName(name);
     }
-
-
+*/
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     @ResponseBody
@@ -49,6 +48,19 @@ class ApplicationFacadeController {
         return n;
     }
 
+    @RequestMapping(value = "/sensor", method = RequestMethod.GET)
+    public List<Sensor> getAllWerte(){
+        return sensorRepository.findAll();
+    }
+
+    @RequestMapping(value = "/sensor", method = RequestMethod.POST)
+    @ResponseBody
+    public Sensor createSensorData(@RequestParam Integer wert){
+        Sensor n = new Sensor();
+        n.setWert(wert);
+        sensorRepository.save(n);
+        return n;
+    }
 
     @RequestMapping("/tools")
     public List<Tools> getAllTools(){
