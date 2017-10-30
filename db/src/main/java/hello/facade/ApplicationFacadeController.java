@@ -53,7 +53,7 @@ class ApplicationFacadeController {
         return sensorRepository.findAll();
     }
 
-    @RequestMapping(value = "/sensor", method = RequestMethod.POST)
+    @RequestMapping(value = "/sensor", method = RequestMethod.PUT)
     @ResponseBody
     public Sensor createSensorData(@RequestParam Integer wert){
         Sensor n = new Sensor();
