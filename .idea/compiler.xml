@@ -4,14 +4,22 @@
     <bytecodeTargetLevel>
       <module name="backend_main" target="1.8" />
       <module name="backend_test" target="1.8" />
+      <module name="basic_main" target="1.5" />
+      <module name="basic_test" target="1.5" />
       <module name="db_main" target="1.8" />
       <module name="db_test" target="1.8" />
       <module name="hello_main" target="1.8" />
       <module name="hello_test" target="1.8" />
       <module name="lalaland_main" target="1.8" />
       <module name="lalaland_test" target="1.8" />
+      <module name="secWeb_main" target="1.8" />
+      <module name="secWeb_test" target="1.8" />
+      <module name="ToolSpace_main" target="1.8" />
+      <module name="ToolSpace_test" target="1.8" />
       <module name="web_main" target="1.8" />
       <module name="web_test" target="1.8" />
+      <module name="website_main" target="1.5" />
+      <module name="website_test" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
