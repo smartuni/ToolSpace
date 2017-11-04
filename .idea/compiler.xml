@@ -18,8 +18,8 @@
       <module name="ToolSpace_test" target="1.8" />
       <module name="web_main" target="1.8" />
       <module name="web_test" target="1.8" />
-      <module name="website_main" target="1.5" />
-      <module name="website_test" target="1.5" />
+      <module name="website_main" target="1.8" />
+      <module name="website_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
