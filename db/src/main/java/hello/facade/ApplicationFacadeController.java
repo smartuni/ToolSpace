@@ -55,7 +55,7 @@ class ApplicationFacadeController {
 
     @RequestMapping(value = "/sensor", method = RequestMethod.PUT)
     @ResponseBody
-    public Sensor createSensorData(@RequestParam Integer wert){
+    public Sensor createSensorData(@RequestBody Integer wert){
         Sensor n = new Sensor();
         n.setWert(wert);
         sensorRepository.save(n);
