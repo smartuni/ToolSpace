@@ -30,8 +30,8 @@ To return the tools, the user only has to place the tool back to the tool wall.
 # ToDo Overview
 - [x] README.md erstellen
 - [ ] Milestones:
-  - [ ] Präsentation des Projekts
-  - [ ] First Mock-Up Demo
+  - [X] Präsentation des Projekts
+  - [X] First Mock-Up Demo
   - [ ] Release Candidate 1
   - [ ] Final Presentation
 - [x] list syntax required (any unordered or ordered list supported)
