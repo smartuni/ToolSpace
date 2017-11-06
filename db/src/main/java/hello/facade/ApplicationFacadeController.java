@@ -3,7 +3,7 @@ package hello.facade;
 import hello.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -37,15 +37,15 @@ class ApplicationFacadeController {
     }
 */
 
-    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @RequestMapping(value = "/user", method = RequestMethod.PUT, consumes = {MediaType.ALL_VALUE})
     @ResponseBody
-    public User updateUser(@RequestParam String name, @RequestParam String u_lvl, @RequestParam String time){
-        User n = new User();
+    public User updateUser(@RequestBody User user){
+       /* User n = new User();
         n.setName(name);
-        n.setU_lvl(u_lvl);
-        n.setTime(time);
-        userRepository.save(n);
-        return n;
+        n.setU_lvl(Integer.valueOf(u_lvl));
+        n.setTime(Integer.valueOf(time));*/
+        userRepository.save(user);
+        return user;
     }
 
     @RequestMapping(value = "/sensor", method = RequestMethod.GET)
@@ -53,13 +53,11 @@ class ApplicationFacadeController {
         return sensorRepository.findAll();
     }
 
-    @RequestMapping(value = "/sensor", method = RequestMethod.PUT)
+    @RequestMapping(value = "/sensor", method = RequestMethod.PUT, consumes = {MediaType.ALL_VALUE})
     @ResponseBody
-    public Sensor createSensorData(@RequestBody Integer wert){
-        Sensor n = new Sensor();
-        n.setWert(wert);
-        sensorRepository.save(n);
-        return n;
+    public Sensor createSensorData(@RequestBody Sensor wert){
+        sensorRepository.save(wert);
+        return wert;
     }
 
     @RequestMapping(value= "/tools", method = RequestMethod.GET)
@@ -67,15 +65,10 @@ class ApplicationFacadeController {
         return toolsRepository.findAll();
     }
 
-    @RequestMapping(value= "/tools", method = RequestMethod.PUT)
+    @RequestMapping(value= "/tools", method = RequestMethod.PUT, consumes = {MediaType.ALL_VALUE})
     @ResponseBody
-    public Tools updateTools(@RequestParam String name, @RequestParam String t_lvl, @RequestParam Integer wall, @RequestParam Integer rent){
-	Tools n = new Tools();
-	n.setRent(rent);
-	n.setWall(wall);
-	n.setT_lvl(t_lvl);
-	n.setName(name);
-	toolsRepository.save(n);
-	return n;
+    public Tools updateTools(@RequestBody Tools tool){
+	toolsRepository.save(tool);
+	return tool;
     }
 }

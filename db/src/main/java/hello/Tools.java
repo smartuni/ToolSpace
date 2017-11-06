@@ -13,7 +13,7 @@ public class Tools {
 
     private String name;
 
-    private String t_lvl;
+    private Integer t_lvl;
 
     private Integer wall;
 
@@ -35,11 +35,11 @@ public class Tools {
         this.wall = wall;
     }
 
-    public String getT_lvl() {
+    public Integer getT_lvl() {
         return t_lvl;
     }
 
-    public void setT_lvl(String t_lvl) {
+    public void setT_lvl(Integer t_lvl) {
         this.t_lvl = t_lvl;
     }
 
