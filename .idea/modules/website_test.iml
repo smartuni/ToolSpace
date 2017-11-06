@@ -31,6 +31,8 @@
     <orderEntry type="library" name="Gradle: org.webjars:bootstrap:3.3.7-1" level="project" />
     <orderEntry type="library" name="Gradle: org.webjars:webjars-locator:0.32-1" level="project" />
     <orderEntry type="library" name="Gradle: org.webjars:jasmine:2.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.webjars.npm:angular__forms:4.4.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.webjars.npm:angular__router:4.4.4" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-test:1.5.6.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:1.5.8.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aop:4.3.12.RELEASE" level="project" />
