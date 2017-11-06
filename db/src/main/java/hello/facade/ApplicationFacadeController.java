@@ -62,9 +62,20 @@ class ApplicationFacadeController {
         return n;
     }
 
-    @RequestMapping("/tools")
+    @RequestMapping(value= "/tools", method = RequestMethod.GET)
     public List<Tools> getAllTools(){
         return toolsRepository.findAll();
     }
 
+    @RequestMapping(value= "/tools", method = RequestMethod.PUT)
+    @ResponseBody
+    public Tools updateTools(@RequestParam String name, @RequestParam String t_lvl, @RequestParam Integer wall, @RequestParam Integer rent){
+	Tools n = new Tools();
+	n.setRent(rent);
+	n.setWall(wall);
+	n.setT_lvl(t_lvl);
+	n.setName(name);
+	toolsRepository.save(n);
+	return n;
+    }
 }
