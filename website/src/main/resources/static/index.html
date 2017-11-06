@@ -2,15 +2,26 @@
 <html>
 <head>
     <title>Hello Angular</title>
-    <link rel="stylesheet" type="text/css"
-          href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript"
-            src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-<app/>
+
+<app>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li><a routerLinkActive="active" href="home.html">Home</a></li>
+            <li><a routerLinkActive="active" href="login.html">Login</a></li>
+            <li><a (click)="logout()">Logout</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</app>
+
 <script type="text/javascript" src="webjars/core-js/client/shim.min.js"></script>
 <script type="text/javascript" src="webjars/rxjs/bundles/Rx.min.js"></script>
 <script type="text/javascript" src="webjars/zone.js/dist/zone.min.js"></script>
@@ -18,10 +29,8 @@
 <script type="text/javascript" src="webjars/angular__core/bundles/core.umd.js"></script>
 <script type="text/javascript" src="webjars/angular__common/bundles/common.umd.js"></script>
 <script type="text/javascript" src="webjars/angular__compiler/bundles/compiler.umd.js"></script>
-<script type="text/javascript"
-        src="webjars/angular__platform-browser/bundles/platform-browser.umd.js"></script>
-<script type="text/javascript"
-        src="webjars/angular__platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"></script>
+<script type="text/javascript" src="webjars/angular__platform-browser/bundles/platform-browser.umd.js"></script>
+<script type="text/javascript" src="webjars/angular__platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"></script>
 <script type="text/javascript" src="webjars/angular__http/bundles/http.umd.js"></script>
 <script type="text/javascript" src="webjars/angular__router/bundles/router.umd.js"></script>
 <script type="text/javascript" src="webjars/angular__forms/bundles/forms.umd.js"></script>
