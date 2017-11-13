@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,15 +40,16 @@ class ApplicationFacadeController {
     }
 */
 
-    @RequestMapping(value = "/user", method = RequestMethod.PUT, consumes = {MediaType.ALL_VALUE})
+    @RequestMapping(value = "/user", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE})
     @ResponseBody
-    public User updateUser(@RequestBody User user){
-       /* User n = new User();
-        n.setName(name);
-        n.setU_lvl(Integer.valueOf(u_lvl));
-        n.setTime(Integer.valueOf(time));*/
-        userRepository.save(user);
-        return user;
+    public User updateUser(@RequestBody String user_2){
+	User n = new User();
+	String[] user = user_2.split(":");
+        n.setName(user[0]);
+        n.setU_lvl(Integer.valueOf(user[1]));
+        n.setTime(Integer.valueOf(user[2]));
+        userRepository.save(n);
+        return n;
     }
 
     @RequestMapping(value = "/sensor", method = RequestMethod.GET)
@@ -53,11 +57,17 @@ class ApplicationFacadeController {
         return sensorRepository.findAll();
     }
 
-    @RequestMapping(value = "/sensor", method = RequestMethod.PUT, consumes = {MediaType.ALL_VALUE})
+    @RequestMapping(value = "/sensor", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE}, produces = "text/plain")
     @ResponseBody
-    public Sensor createSensorData(@RequestBody Sensor wert){
-        sensorRepository.save(wert);
-        return wert;
+    public ResponseEntity createSensorData(@RequestBody String wert){
+	try{
+		Sensor n = new Sensor();
+		n.setWert(Integer.valueOf(wert));
+	   	sensorRepository.save(n);
+	        return new ResponseEntity(HttpStatus.ACCEPTED);
+	}catch(Exception e){
+		return new ResponseEntity(HttpStatus.GONE);
+	}
     }
 
     @RequestMapping(value= "/tools", method = RequestMethod.GET)
