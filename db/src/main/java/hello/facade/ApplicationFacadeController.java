@@ -75,10 +75,16 @@ class ApplicationFacadeController {
         return toolsRepository.findAll();
     }
 
-    @RequestMapping(value= "/tools", method = RequestMethod.PUT, consumes = {MediaType.ALL_VALUE})
+    @RequestMapping(value= "/tools", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE}, produces = "text/plain")
     @ResponseBody
-    public Tools updateTools(@RequestBody Tools tool){
-	toolsRepository.save(tool);
-	return tool;
+    public ResponseEntity updateTools(@RequestBody String tool){
+        try {
+            Tools n = new Tools();
+            String[] toolBody = tool.split(":");
+            toolsRepository.save(n);
+            return new ResponseEntity(HttpStatus.CREATED);
+        }catch(Exception e){
+            return new ResponseEntity(HttpStatus.METHOD_FAILURE);
+        }
     }
 }
