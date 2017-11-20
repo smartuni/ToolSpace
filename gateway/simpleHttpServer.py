@@ -9,13 +9,9 @@ Send a HEAD request::
     curl -I http://localhost
 Send a POST request::
     curl -d "foo=bar&bin=baz" http://localhost
+Send a PUT request::
+	curl -d "foo" -X PUT http://localhost
 """
-
-#data = {
-#   'name' : 'ACME',
-#   'shares' : 100,
-#   'price' : 542.23
-#}
 
 # turn python data structure into json data structure
 #json_str = json.dumps(data)
@@ -24,49 +20,43 @@ Send a POST request::
 #data = json.loads(json_str)
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import json
 import urllib
 import codecs
 #import jsonEncoder
 
-class S(BaseHTTPRequestHandler):
-    def _set_headers(self):
+class S(BaseHTTPRequestHandler):     
+    def _set_headers(self,content):
+        if (content and not content.isspace()):
+            self.send_response(200)
+            response = "200"
+        else:
+            response = "400" #richtige ausgabe implementieren	
+            self.send_response(400)
 		# Send response status code
-        self.send_response(200)
+        #self.send_response(200)
 		# Send headers
-        self.send_header('Content-type', 'text/html')
-        self.end_headers()
-
-    def do_GET(self):
-        self._set_headers()
-		# Send message back to client
-        message = 'hi!'
-		# Write content as utf-8 data
-        #self.wfile.write(message.encode('utf-8'))
-        self.wfile.write(bytes(message,'utf-8'))
-        return
-    def do_HEAD(self):
-        self._set_headers()
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()	
+        return response
+		
     def do_POST(self):
         # Doesn't do anything with posted data
         content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
         content = self.rfile.read(content_length) # <--- Gets the data itself
         content.decode("utf-8")
-        #json_str = json.dumps(content)
         print (content)
+        response = self._set_headers(content)
+        self.wfile.write(str.encode(response))		
 		
-        #json_str = JSONEncoder().encode(analytics)
-        self._set_headers()
-        #message = 'POST!'
-        #self.wfile.write(bytes(content,'utf-8'))
-        self.wfile.write(content)
     def do_PUT(self):
-        print ("----- SOMETHING WAS PUT!! ------")
-        print (self.headers)
+	    # Doesn't do anything with put data
         content_length = int(self.headers['Content-Length'])
         content = self.rfile.read(content_length)
+        content.decode("utf-8")
         print (content)
-        self.wfile.write(content)
+        response = self._set_headers(content)
+        self.wfile.write(str.encode(response))
+		
 def run(server_class=HTTPServer, handler_class=S, port=80):
 	# Server settings
 	# Choose port 8080, for port 80, which is normally used for a http server, you need root access
