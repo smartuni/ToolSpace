@@ -20,6 +20,9 @@ Send a PUT request::
 #data = json.loads(json_str)
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from aiocoap import *
+import asyncio
+import logging
 import urllib
 import codecs
 #import jsonEncoder
@@ -48,14 +51,28 @@ class S(BaseHTTPRequestHandler):
         response = self._set_headers(content)
         self.wfile.write(str.encode(response))		
 		
-    def do_PUT(self):
+    async def do_PUT(self):
+
+        context = await Context.create_client_context()
+
+        await asyncio.sleep(2)
+
 	    # Doesn't do anything with put data
         content_length = int(self.headers['Content-Length'])
-        content = self.rfile.read(content_length)
-        content.decode("utf-8")
-        print (content)
-        response = self._set_headers(content)
-        self.wfile.write(str.encode(response))
+        payload = self.rfile.read(content_length)
+        #content.decode("utf-8")
+        #print (content)
+        #response = self._set_headers(content)
+        # 3 = PUT
+        request = Message(code=3, payload=payload)
+        request.opt.uri_host = 'fe80::7b65:364c:7034:34a6%lowpan0'
+        #request.opt.uri_path = ("Terminal")
+
+        response = await context.request(request).response
+
+        self.wfile.write(str.encode(response.code))
+
+
 		
 def run(server_class=HTTPServer, handler_class=S, port=80):
 	# Server settings
