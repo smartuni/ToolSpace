@@ -22,8 +22,8 @@
       <file leaf-file-name="simpleHttpServer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gateway/simpleHttpServer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+            <state relative-caret-position="338">
+              <caret line="72" column="54" lean-forward="false" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
               <folding>
                 <element signature="e#505#563#0" expanded="true" />
               </folding>
@@ -474,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511175977871</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Den doPUT angepasst um zum RIOT Board zu Kommunizieren über COAP">
+      <created>1511176094954</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1511176094954</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -660,8 +667,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gateway/simpleHttpServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+        <state relative-caret-position="338">
+          <caret line="72" column="54" lean-forward="false" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
           <folding>
             <element signature="e#505#563#0" expanded="true" />
           </folding>

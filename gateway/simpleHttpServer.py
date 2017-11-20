@@ -60,7 +60,7 @@ class S(BaseHTTPRequestHandler):
         #response = self._set_headers(content)
         response = self.coap_put(content)
         print(response)
-        self.wfile.write(str.encode(response))
+        self.wfile.write(response)
 
 
 
