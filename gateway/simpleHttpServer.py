@@ -58,7 +58,7 @@ class S(BaseHTTPRequestHandler):
         content.decode("utf-8")
         #print (content)
         #response = self._set_headers(content)
-        response = self.coap_put(str.encode(content))
+        response = self.coap_put(content)
         print(response)
         self.wfile.write(str.encode(response))
 

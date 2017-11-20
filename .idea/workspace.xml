@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d5646de-aca1-4674-b2cc-64097f1fbc14" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gateway/simpleHttpServer.py" afterPath="$PROJECT_DIR$/gateway/simpleHttpServer.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +22,8 @@
       <file leaf-file-name="simpleHttpServer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gateway/simpleHttpServer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="188">
+              <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
               <folding>
                 <element signature="e#505#563#0" expanded="true" />
               </folding>
@@ -466,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511175973071</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Den doPUT angepasst um zum RIOT Board zu Kommunizieren über COAP">
+      <created>1511175977871</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1511175977871</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -652,8 +660,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gateway/simpleHttpServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state relative-caret-position="188">
+          <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
           <folding>
             <element signature="e#505#563#0" expanded="true" />
           </folding>
