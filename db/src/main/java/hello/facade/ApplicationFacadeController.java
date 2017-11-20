@@ -2,15 +2,12 @@ package hello.facade;
 
 import hello.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 class ApplicationFacadeController {
@@ -32,13 +29,7 @@ class ApplicationFacadeController {
     public List<User> getAllUser(){
         return userRepository.findAll();
     }
-/*
-    @RequestMapping(value = "/user/{name}", method = RequestMethod.GET)
-    @ResponseBody
-    public Optional<User> getUserByName(@RequestParam("name") String name){
-        return userRepository.findByName(name);
-    }
-*/
+
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE})
     @ResponseBody
@@ -84,7 +75,7 @@ class ApplicationFacadeController {
             toolsRepository.save(n);
             return new ResponseEntity(HttpStatus.CREATED);
         }catch(Exception e){
-            return new ResponseEntity(HttpStatus.METHOD_FAILURE);
+            return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
         }
     }
 }
