@@ -41,7 +41,7 @@ class S(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/plain')
         self.end_headers()	
         return response
-		
+
     def do_POST(self):
         # Doesn't do anything with posted data
         content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
@@ -50,14 +50,14 @@ class S(BaseHTTPRequestHandler):
         print (content)
         response = self._set_headers(content)
         self.wfile.write(str.encode(response))		
-		
+
     async def do_PUT(self):
 
         context = await Context.create_client_context()
 
         await asyncio.sleep(2)
 
-	    # Doesn't do anything with put data
+        # Doesn't do anything with put data
         content_length = int(self.headers['Content-Length'])
         payload = self.rfile.read(content_length)
         #content.decode("utf-8")
@@ -67,13 +67,13 @@ class S(BaseHTTPRequestHandler):
         request = Message(code=3, payload=payload)
         request.opt.uri_host = 'fe80::7b65:364c:7034:34a6%lowpan0'
         #request.opt.uri_path = ("Terminal")
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
 
         response = await context.request(request).response
 
         self.wfile.write(str.encode(response.code))
-
-
-		
+        
 def run(server_class=HTTPServer, handler_class=S, port=80):
 	# Server settings
 	# Choose port 8080, for port 80, which is normally used for a http server, you need root access
