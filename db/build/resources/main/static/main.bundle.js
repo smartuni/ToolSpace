@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\r\n  {{title}}\r\n</h1>\r\n<button (click)=\"sayHello()\">Say Hello</button>\r\n<span>{{result}}</span>\r\n\r\n"
+module.exports = "<h1>\r\n  {{title}}\r\n</h1>\r\n<button (click)=\"sayHello()\">Don't push this button</button>\r\n<span>{{result}}</span>\r\n\r\n"
 
 /***/ }),
 
@@ -63,13 +63,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppComponent = (function () {
     function AppComponent(http) {
         this.http = http;
-        this.title = 'app works!';
+        this.title = 'ToolSpace';
         this.result = '';
     }
     AppComponent.prototype.sayHello = function () {
         var _this = this;
         this.result = 'loading...';
-        this.http.get("/api/hello-world").subscribe(function (response) { return _this.result = response.text(); });
+        this.http.get("/user").subscribe(function (response) { return _this.result = response.text(); });
     };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({

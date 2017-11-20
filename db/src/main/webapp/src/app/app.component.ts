@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'ToolSpace';
   result = '';
 
   constructor(
@@ -17,7 +17,7 @@ export class AppComponent {
 
   private sayHello(): void {
     this.result = 'loading...';
-    this.http.get(`/api/hello-world`).subscribe(response => this.result = response.text());
+    this.http.get(`/user`).subscribe(response => this.result = response.text());
   }
 
 }
