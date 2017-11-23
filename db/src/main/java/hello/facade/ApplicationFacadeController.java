@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,9 +28,16 @@ class ApplicationFacadeController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public List<User> getAllUser(){
+    RestTemplate restTemplate = new RestTemplate();
+    String fooResourceUrl
+            = "http://141.22.28.85:8080/sensor";
+    ResponseEntity<String> response
+            = restTemplate.getForEntity(fooResourceUrl + "/1", String.class);
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public List<User> getAllUser(){
         return userRepository.findAll();
     }
-
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE})
     @ResponseBody
