@@ -26,13 +26,15 @@ class ApplicationFacadeController {
     private SensorRepository sensorRepository;
 
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public List<User> getAllUser(){
+    @RequestMapping(value = "/skdata", method = RequestMethod.GET)
+    public ResponseEntity<String> getAllUser(){
     RestTemplate restTemplate = new RestTemplate();
     String fooResourceUrl
-            = "http://141.22.28.85:8080/sensor";
+            = "http://141.22.28.85/sensor";
     ResponseEntity<String> response
-            = restTemplate.getForEntity(fooResourceUrl + "/1", String.class);
+            = restTemplate.getForEntity(fooResourceUrl, String.class);
+	return response;
+    }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public List<User> getAllUser(){

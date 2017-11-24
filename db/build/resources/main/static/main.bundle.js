@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\r\n  {{title}}\r\n</h1>\r\n<button (click)=\"sayHello()\">Don't push this button</button>\r\n<span>{{result}}</span>\r\n\r\n"
+module.exports = "<h1>\n  {{title}}\n</h1>\n<button (click)=\"sayHello()\">Don't push this button</button>\n<span>{{result}}</span>\n\n"
 
 /***/ }),
 
