@@ -42,27 +42,20 @@ class S(BaseHTTPRequestHandler):
         self.end_headers()
         return response
 
-    def do_POST(self):
-        # Doesn't do anything with posted data
-        content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
-        content = self.rfile.read(content_length) # <--- Gets the data itself
-        content.decode("utf-8")
-        print (content)
-        response = self._set_headers(content)
-        self.wfile.write(str.encode(response))		
-
     def do_PUT(self):
         # Doesn't do anything with put data
         content_length = int(self.headers['Content-Length'])
         content = self.rfile.read(content_length)
         content.decode("utf-8")
+		
+        #str = "127.0.15.68#Hammer//01#0";
+        newContent = content.decode("utf-8").split('#',1)
+		
         #print (content)
         #response = self._set_headers(content)
-        response = self.coap_put(content)
+        response = self.coap_put(newContent)
         print(response)
         self.wfile.write(response)
-
-
 
     async def coap_put(self,content):
         response = asyncio.get_event_loop().run_until_complete(self.coap_put_put(content))
@@ -78,12 +71,15 @@ class S(BaseHTTPRequestHandler):
 
         await asyncio.sleep(2)
 
-        payload = content
+        payload = content[1]
         # 3 = PUT
         request = Message(code=3, payload=payload)
         # These direct assignments are an alternative to setting the URI like in
         # the GET example:
-        request.opt.uri_host = 'fe80::7b65:364c:7034:34a6%lowpan0'
+        #request.opt.uri_host = 'fe80::7b65:364c:7034:34a6%lowpan0'
+		
+        request.opt.uri_host = content[0] + '%lowpan0'
+		
         #request.opt.uri_path = ("other", "block")
 
         response = await context.request(request).response
