@@ -18,7 +18,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
+       ccc           @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }

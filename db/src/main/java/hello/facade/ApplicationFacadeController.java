@@ -27,7 +27,7 @@ class ApplicationFacadeController {
 
 
     @RequestMapping(value = "/skdata", method = RequestMethod.GET)
-    public ResponseEntity<String> getAllUser(){
+    public ResponseEntity<String> getsmartkitchendata(){
     RestTemplate restTemplate = new RestTemplate();
     String fooResourceUrl
             = "http://141.22.28.85/sensor";
@@ -37,8 +37,8 @@ class ApplicationFacadeController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public List<User> getAllUser(){
-        return userRepository.findAll();
+    public String getAllUser(){
+        return userRepository.findAll().toString();
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE})
@@ -53,6 +53,7 @@ class ApplicationFacadeController {
         return n;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/sensor", method = RequestMethod.GET)
     public List<Sensor> getAllWerte(){
         return sensorRepository.findAll();

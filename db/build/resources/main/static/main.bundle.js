@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  {{title}}\n</h1>\n<button (click)=\"sayHello()\">Don't push this button</button>\n<span>{{result}}</span>\n\n"
+module.exports = "<h1>\r\n  {{title}}\r\n</h1>\r\n<button (click)=\"printUsers()\">Nutzer</button>\r\n<button (click)=\"printTools()\">Werkzeuge</button>\r\n<button (click)=\"printSensor()\">Sensordaten</button>\r\n<button (click)=\"printSKData()\">Smartkitchen</button>\r\n<span>{{result}}</span>\r\n\r\n"
 
 /***/ }),
 
@@ -66,10 +66,25 @@ var AppComponent = (function () {
         this.title = 'ToolSpace';
         this.result = '';
     }
-    AppComponent.prototype.sayHello = function () {
+    AppComponent.prototype.printUsers = function () {
         var _this = this;
         this.result = 'loading...';
         this.http.get("/user").subscribe(function (response) { return _this.result = response.text(); });
+    };
+    AppComponent.prototype.printTools = function () {
+        var _this = this;
+        this.result = 'loading...';
+        this.http.get("/tools").subscribe(function (response) { return _this.result = response.text(); });
+    };
+    AppComponent.prototype.printSensor = function () {
+        var _this = this;
+        this.result = 'loading...';
+        this.http.get("/wert").subscribe(function (response) { return _this.result = response.text(); });
+    };
+    AppComponent.prototype.printSKData = function () {
+        var _this = this;
+        this.result = 'loading...';
+        this.http.get('http://141.22.28.85/sensor').subscribe(function (response) { return _this.result = response.text(); });
     };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({

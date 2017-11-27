@@ -15,9 +15,22 @@ export class AppComponent {
     private http: Http){
   }
 
-  private sayHello(): void {
+  private printUsers(): void {
     this.result = 'loading...';
     this.http.get(`/user`).subscribe(response => this.result = response.text());
+  }
+  private printTools(): void {
+    this.result = 'loading...';
+    this.http.get(`/tools`).subscribe(response => this.result = response.text());
+  }
+  private printSensor(): void {
+    this.result = 'loading...';
+    this.http.get(`/wert`).subscribe(response => this.result = response.text());
+  }
+
+  private printSKData(): void {
+    this.result = 'loading...';
+    this.http.get('http://141.22.28.85/sensor').subscribe(response => this.result = response.text());
   }
 
 }
