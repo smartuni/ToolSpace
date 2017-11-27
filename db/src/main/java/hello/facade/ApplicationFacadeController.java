@@ -38,7 +38,12 @@ class ApplicationFacadeController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String getAllUser(){
-        return userRepository.findAll().toString();
+        List<User> lu =  userRepository.findAll();
+	String val = "";
+	for(User u : lu){
+		val = val + "| " + u.getName() + " |" + System.lineSeparator(); 
+	}
+	return val;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE})
