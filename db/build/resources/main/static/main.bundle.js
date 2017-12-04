@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "body{\n\tmargin: 0px;\n\tpadding: 0px;\n\tfont-family: Arial;\n\tcolor: white;\n\tbackground-color: black;\n\tbackground-repeat: no-repeat;\n}\n\nbutton{\n\tborder-radius: 15px 15px 15px 15px;\n\tfloat: left;\n\twidth: 150px;\n\theight: 40px;\n\tcolor: white;\n\tbackground-color: blue;\n\topacity: .8;\n\tline-height: 40px;\n\ttext-align: center;\n\tfont-size: 20px;\n}\nbutton:hover{\n\tborder-radius: 15px 15px 15px 15px;\n\tfloat: left;\n\twidth: 150px;\n\theight: 40px;\n\tcolor: white;\n\tbackground-color: blue;\n\topacity: .8;\n\tline-height: 40px;\n\ttext-align: center;\n\tfont-size: 20px;\n\n}\n", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  {{title}}\n</h1>\n<button (click)=\"printUsers()\">Nutzer</button>\n<button (click)=\"printTools()\">Werkzeuge</button>\n<button (click)=\"printSensor()\">Sensordaten</button>\n<button (click)=\"printSKData()\">Smartkitchen</button>\n<span><pre>{{result}}</pre></span>\n\n"
+module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"UFT-8\">\n\t</head>\n\t<body>\n\t\t<h1>\n\t\t{{title}}\n\t\t</h1>\n\t\t<button (click)=\"printUsers()\">Nutzer</button>\n\t\t<button (click)=\"printTools()\">Werkzeuge</button>\n\t\t<button (click)=\"printSensor()\">Sensordaten</button>\n\t\t<button (click)=\"printSKData()\">Smartkitchen</button>\n\t\t<button (click)=\"showPosition()\">Gateway</button>\n\t\t<br/>\n\t\t<br/>\n\t\t<br/>\n\t\t<div><pre>{{result}}</pre></div>\n\t</body>\n</html>\n"
 
 /***/ }),
 
@@ -79,12 +79,18 @@ var AppComponent = (function () {
     AppComponent.prototype.printSensor = function () {
         var _this = this;
         this.result = 'loading...';
-        this.http.get("/wert").subscribe(function (response) { return _this.result = response.text(); });
+        this.http.get("/sensor").subscribe(function (response) { return _this.result = response.text(); });
     };
     AppComponent.prototype.printSKData = function () {
         var _this = this;
         this.result = 'loading...';
         this.http.get('http://141.22.28.85/sensor').subscribe(function (response) { return _this.result = response.text(); });
+    };
+    AppComponent.prototype.showPosition = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var data = "255.255.255.0#01#1";
+        console.log(this.http.put('http://192.168.1.236', data, options));
     };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -92,7 +98,7 @@ var AppComponent = (function () {
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -133,7 +139,7 @@ var AppModule = (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */]
             ],
             providers: [],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]

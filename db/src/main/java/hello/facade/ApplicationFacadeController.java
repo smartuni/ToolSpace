@@ -41,7 +41,8 @@ class ApplicationFacadeController {
         List<User> lu =  userRepository.findAll();
 	String val = "";
 	for(User u : lu){
-		val = val + "| " + u.getName() + " |" + System.lineSeparator(); 
+		val = val + "| " + u.getName() + " | " + u.getLogin() + " |";
+		
 	}
 	return val;
     }
@@ -56,6 +57,19 @@ class ApplicationFacadeController {
         n.setTime(Integer.valueOf(user[2]));
         userRepository.save(n);
         return n;
+    }
+
+    @RequestMapping(value="/login", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE})
+    @ResponseBody
+    public User logUser(@RequestBody String user_nfc){
+	User us = userRepository.findByNfc(user_nfc);
+	if (us.getLogin() == 0){
+		us.setLogin(1);
+	} else {
+		us.setLogin(0);
+	}
+	userRepository.saveAndFlush(us);
+	return us;
     }
 
     @CrossOrigin
