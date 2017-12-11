@@ -231,7 +231,7 @@ int put(char *adr, char *pth, char *data)
 
 /*ssize_t sock_udp_recv(sock_udp_t *sock, void *data, size_t max_len,
                       uint32_t timeout, sock_udp_ep_t *remote)
-{*/
+{
     gnrc_pktsnip_t *pkt, *udp;
     udp_hdr_t *hdr;
     sock_ip_ep_t tmp;
@@ -255,14 +255,14 @@ int put(char *adr, char *pth, char *data)
     assert(udp);
     hdr = udp->data;
     if (remote != NULL) {
-        /* return remote to possibly block if wrong remote */
+        // return remote to possibly block if wrong remote 
         memcpy(remote, &tmp, sizeof(tmp));
         remote->port = byteorder_ntohs(hdr->src_port);
     }
-    if ((sock->remote.family != AF_UNSPEC) &&  /* check remote end-point if set */
+    if ((sock->remote.family != AF_UNSPEC) &&  // check remote end-point if set 
         ((sock->remote.port != byteorder_ntohs(hdr->src_port)) ||
-        /* We only have IPv6 for now, so just comparing the whole end point
-         * should suffice */
+        // We only have IPv6 for now, so just comparing the whole end point
+         // should suffice 
         ((memcmp(&sock->remote.addr, &ipv6_addr_unspecified,
                  sizeof(ipv6_addr_t)) != 0) &&
          (memcmp(&sock->remote.addr, &tmp.addr, sizeof(ipv6_addr_t)) != 0)))) {
@@ -272,7 +272,7 @@ int put(char *adr, char *pth, char *data)
     memcpy(data, pkt->data, pkt->size);
     gnrc_pktbuf_release(pkt);
     return (int)pkt->size;
-}
+}*/
 
 int main(void)
 {
@@ -336,17 +336,16 @@ int main(void)
 //        xtimer_usleep(250000UL);
 
 //		printf("Kommt er in die while?\n");
-		res = sock_udp_recv(&sock, buf, bufsize, -1, &remote);
+		res = sock_udp_recv(&sock, buf, bufsize, 1, &remote);
         if (res == -1) {
 		printf("Kein sock udp receive?\n");	
 //            DEBUG("error receiving UDP packet\n");
             return -1;
         }
         else {
-			LED0_TOGGLE;
             coap_pkt_t pkt;
-			printf("COAP Paket...\n");
-//			printf("%i\n",coap_parse(&pkt, (uint8_t*)buf, res));
+//			printf("COAP Paket...\n");
+			printf("%i\n",coap_parse(&pkt, (uint8_t*)buf, res));
 //            if (coap_parse(&pkt, (uint8_t*)buf, res) < 0) {
 			
 //                printf("error parsing packet\n");
@@ -354,6 +353,7 @@ int main(void)
 //            }
 //			printf("COAP Paket geparsed...\n");
             if ((res = coap_handle_req(&pkt, buf, bufsize)) > 0) {
+				LED0_TOGGLE;
                 res = sock_udp_send(&sock, buf, res, &remote);
             }
         }
@@ -419,7 +419,7 @@ int main(void)
 					printf("TEST\n");
 					printbuff(testdaten, 7);
 					storebuff(testdaten, 7, testdatenNeu);
-//					put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
+					put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
 					strcpy(putarray, testdatenNeu);
             }
 			var = 0;
