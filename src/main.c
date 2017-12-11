@@ -37,28 +37,40 @@
 #define LOG_LEVEL LOG_INFO
 #include "log.h"
 
-/*COAP Server
+//COAP Server
 #include "nanocoap.h"
 #include "nanocoap_sock.h"
 #define COAP_INBUF_SIZE (256U)
 
 #define MAIN_QUEUE_SIZE     (8)
-COAP Server*/
+//COAP Server*/
 
 
 #define CROSSCOAP_PORT ("5683")
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
-/*COAP Server
-static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
+char putarray[7];
+//COAP Server
+//static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
+static uint8_t internal_value = 0;
 
 // import "ifconfig" shell command, used for printing addresses 
-extern int _netif_config(int argc, char **argv);
-COAP */
+//extern int _netif_config(int argc, char **argv);
+
+int put(char *adr, char *pth, char *data);
+
+static ssize_t _riot_board_handler(coap_pkt_t *pkt, uint8_t *buf, size_t len)
+{
+    return coap_reply_simple(pkt, COAP_CODE_205, buf, len,
+            COAP_FORMAT_TEXT, (uint8_t*)RIOT_BOARD, strlen(RIOT_BOARD));
+}
+//COAP Server*/
 
 static void _resp_handler(unsigned req_state, coap_pkt_t* pdu,
                           sock_udp_ep_t *remote);
+						  
+						  
 						  
 
 /* Counts requests sent by CLI. */
@@ -112,7 +124,7 @@ static void _resp_handler(unsigned req_state, coap_pkt_t* pdu,
     }
 }
 
-/*COAP Server
+//COAP Server
 static ssize_t _riot_value_handler(coap_pkt_t *pkt, uint8_t *buf, size_t len)
 {
     ssize_t p = 0;
@@ -127,8 +139,10 @@ static ssize_t _riot_value_handler(coap_pkt_t *pkt, uint8_t *buf, size_t len)
         // write the response buffer with the internal value 
         p += fmt_u32_dec(rsp, internal_value);
         code = COAP_CODE_205;
+		LED0_TOGGLE;
         break;
     case COAP_PUT:
+	    put("fe80::1ac0:ffee:1ac0:ffee","/login", putarray);
     case COAP_POST:
     {
         // convert the payload to an integer and update the internal value 
@@ -151,12 +165,11 @@ const coap_resource_t coap_resources[] = {
 };
 
 const unsigned coap_resources_numof = sizeof(coap_resources) / sizeof(coap_resources[0]);
-COAP Server*/
+// COAP Server*/
 
 void storebuff(char *buff, unsigned len, char *store)
 {
-//	char temp[1];
-	char temp[0];	
+	char temp[1];
 	while (len){
 		len--;
 		sprintf(temp, "%02x", *buff++);
@@ -218,13 +231,13 @@ int put(char *adr, char *pth, char *data)
 
 int main(void)
 {
-    static char data[16];
+    static char data[7]; //Vorher 16
     static nfc_iso14443a_t card;
     static pn532_t pn532;
     unsigned len;
     int ret;
 	char testdaten[7]; //vorher 32
-//	char testdatenNeu[7]; // vorher 32
+	char testdatenNeu[7]; // vorher 32
 	
 
 #if defined(PN532_SUPPORT_I2C)
@@ -263,7 +276,7 @@ int main(void)
 	uint8_t buf[COAP_INBUF_SIZE];
     sock_udp_ep_t local = { .port=COAP_PORT, .family=AF_INET6 };
     nanocoap_server(&local, buf, sizeof(buf));
-	 COAP Server*/
+	// COAP Server*/
 	
 	
 
@@ -303,9 +316,7 @@ int main(void)
         }
         else if (card.type == ISO14443A_MIFARE) {
             char key[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-            char data[32];
-//			char *tuedelchen[1] = '"';
-//			char *tuedelchen2[1] = '"';
+            char data[7];
 			int var = 0;
 
             for (int i = 0; i < 64; i++) {
@@ -329,15 +340,13 @@ int main(void)
                     break;
                 }
 				if (var == 0 && i == 0) {
-					char testdatenNeu[7];
-					memset(&testdatenNeu[0], 0, sizeof(testdatenNeu)); 
 				    strcpy(testdaten, data);
 					var = 1;
 					printf("TEST\n");
 					printbuff(testdaten, 7);
 					storebuff(testdaten, 7, testdatenNeu);
-					put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
-					
+//					put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
+					strcpy(putarray, testdatenNeu);
             }
 			var = 0;
 		}}

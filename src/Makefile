@@ -13,8 +13,15 @@ USEMODULE += auto_init_gnrc_netif
 # Specify the mandatory networking modules
 USEMODULE += gnrc_ipv6_router_default
 USEMODULE += gcoap
+
+USEMODULE += gnrc_ipv6_default
+USEMODULE += gnrc_udp
+USEMODULE += gnrc_sock_udp
 # Additional networking modules that can be dropped if not needed
 USEMODULE += gnrc_icmpv6_echo
+
+#Server
+USEPKG += nanocoap
 
 # Required by gcoap example
 USEMODULE += od
