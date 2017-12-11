@@ -139,6 +139,7 @@ static ssize_t _riot_value_handler(coap_pkt_t *pkt, uint8_t *buf, size_t len)
         // write the response buffer with the internal value 
         p += fmt_u32_dec(rsp, internal_value);
         code = COAP_CODE_205;
+		printf("Getting Message...");
 		LED0_TOGGLE;
         break;
     case COAP_PUT:
@@ -228,6 +229,50 @@ int put(char *adr, char *pth, char *data)
 
 }
 
+/*ssize_t sock_udp_recv(sock_udp_t *sock, void *data, size_t max_len,
+                      uint32_t timeout, sock_udp_ep_t *remote)
+{*/
+    gnrc_pktsnip_t *pkt, *udp;
+    udp_hdr_t *hdr;
+    sock_ip_ep_t tmp;
+    int res;
+	LED0_TOGGLE;
+	
+    assert((sock != NULL) && (data != NULL) && (max_len > 0));
+    if (sock->local.family == AF_UNSPEC) {
+        return -EADDRNOTAVAIL;
+    }
+    tmp.family = sock->local.family;
+    res = gnrc_sock_recv((gnrc_sock_reg_t *)sock, &pkt, timeout, &tmp);
+    if (res < 0) {
+        return res;
+    }
+    if (pkt->size > max_len) {
+        gnrc_pktbuf_release(pkt);
+        return -ENOBUFS;
+    }
+    udp = gnrc_pktsnip_search_type(pkt, GNRC_NETTYPE_UDP);
+    assert(udp);
+    hdr = udp->data;
+    if (remote != NULL) {
+        /* return remote to possibly block if wrong remote */
+        memcpy(remote, &tmp, sizeof(tmp));
+        remote->port = byteorder_ntohs(hdr->src_port);
+    }
+    if ((sock->remote.family != AF_UNSPEC) &&  /* check remote end-point if set */
+        ((sock->remote.port != byteorder_ntohs(hdr->src_port)) ||
+        /* We only have IPv6 for now, so just comparing the whole end point
+         * should suffice */
+        ((memcmp(&sock->remote.addr, &ipv6_addr_unspecified,
+                 sizeof(ipv6_addr_t)) != 0) &&
+         (memcmp(&sock->remote.addr, &tmp.addr, sizeof(ipv6_addr_t)) != 0)))) {
+        gnrc_pktbuf_release(pkt);
+        return -EPROTO;
+    }
+    memcpy(data, pkt->data, pkt->size);
+    gnrc_pktbuf_release(pkt);
+    return (int)pkt->size;
+}
 
 int main(void)
 {
@@ -262,28 +307,57 @@ int main(void)
     ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
     LOG_INFO("set sam %d\n", ret);
 	
-	/* COAP Server
+	// COAP Server
 	
-	// nanocoap_server uses gnrc sock which uses gnrc which needs a msg queue 
-    msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
-
-    puts("Waiting for address autoconfiguration...");
-    xtimer_sleep(3);
-
     // print network addresses 
-    puts("Configured network interfaces:");
-    _netif_config(0, NULL);
+//    puts("Configured network interfaces:"); 
+//    _netif_config(0, NULL);
 	uint8_t buf[COAP_INBUF_SIZE];
+	size_t bufsize = sizeof(buf);
     sock_udp_ep_t local = { .port=COAP_PORT, .family=AF_INET6 };
-    nanocoap_server(&local, buf, sizeof(buf));
-	// COAP Server*/
+    //nanocoap_server(&local, buf, sizeof(buf));
+	sock_udp_t sock;
+    sock_udp_ep_t remote;
+
+    if (!local.port) {
+        local.port = COAP_PORT;
+    }
+
+    ssize_t res = sock_udp_create(&sock, &local, NULL, 0);
+    if (res == -1) {
+        return -1;
+    }
+	// COAP Server
 	
 	
 
     while (1) {
         /* Delay not to be always polling the interface */
-        xtimer_usleep(250000UL);
+//        xtimer_usleep(250000UL);
 
+//		printf("Kommt er in die while?\n");
+		res = sock_udp_recv(&sock, buf, bufsize, -1, &remote);
+        if (res == -1) {
+		printf("Kein sock udp receive?\n");	
+//            DEBUG("error receiving UDP packet\n");
+            return -1;
+        }
+        else {
+			LED0_TOGGLE;
+            coap_pkt_t pkt;
+			printf("COAP Paket...\n");
+//			printf("%i\n",coap_parse(&pkt, (uint8_t*)buf, res));
+//            if (coap_parse(&pkt, (uint8_t*)buf, res) < 0) {
+			
+//                printf("error parsing packet\n");
+//                continue;
+//            }
+//			printf("COAP Paket geparsed...\n");
+            if ((res = coap_handle_req(&pkt, buf, bufsize)) > 0) {
+                res = sock_udp_send(&sock, buf, res, &remote);
+            }
+        }
+//		printf("test2");
         ret = pn532_get_passive_iso14443a(&pn532, &card, 0x50);
         if (ret < 0) {
             LOG_DEBUG("no card\n");
