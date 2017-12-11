@@ -103,7 +103,7 @@ func (p *proxyHandler) ServeCOAP(l *net.UDPConn, a *net.UDPAddr, m *coap.Message
 	req := translateCOAPRequestToHTTPRequest(m, p.BackendURL)
 	req.Header.Set("User-Agent", userAgent)
 	responseChan := make(chan *coap.Message, 1)
-	waitForResponse := m.IsConfirmable()
+	waitForResponse := true
 	go func() {
 		httpResp, httpBody, err := p.doHTTPRequest(req)
 		if err != nil {
