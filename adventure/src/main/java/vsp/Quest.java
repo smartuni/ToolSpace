@@ -2,12 +2,10 @@ package vsp;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@JsonRootName(value = "object")
 public class Quest {
 
     @Id
@@ -18,17 +16,17 @@ public class Quest {
 
     private String description;
 
-    private String[] followups;
+    private String followups;
 
     private String name;
 
-    private String[] prerequisites;
+    private String prerequisites;
 
     private String requirements;
 
     private Integer reward;
 
-    private String[] tasks;
+    private String tasks;
 
     public Integer getId() {
         return id;
@@ -54,28 +52,12 @@ public class Quest {
         this.description = description;
     }
 
-    public String[] getFollowups() {
-        return followups;
-    }
-
-    public void setFollowups(String[] followups) {
-        this.followups = followups;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String[] getPrerequisites() {
-        return prerequisites;
-    }
-
-    public void setPrerequisites(String[] prerequisites) {
-        this.prerequisites = prerequisites;
     }
 
     public String getRequirements() {
@@ -94,11 +76,27 @@ public class Quest {
         this.reward = reward;
     }
 
-    public String[] getTasks() {
+    public String getFollowups() {
+        return followups;
+    }
+
+    public void setFollowups(String followups) {
+        this.followups = followups;
+    }
+
+    public String getPrerequisites() {
+        return prerequisites;
+    }
+
+    public void setPrerequisites(String prerequisites) {
+        this.prerequisites = prerequisites;
+    }
+
+    public String getTasks() {
         return tasks;
     }
 
-    public void setTasks(String[] tasks) {
+    public void setTasks(String tasks) {
         this.tasks = tasks;
     }
 }
