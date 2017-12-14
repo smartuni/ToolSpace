@@ -108,15 +108,4 @@ class ApplicationFacadeController {
             return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
         }
     }
-
-    @RestController()
-    @RequestMapping(path="/api")
-    public class TestController {
-
-        @GetMapping(path = "/hello-world")
-        public String helloWorld(){
-            return "You fool!";
-        }
-
-    }
 }
