@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="adventure_main" target="1.8" />
+      <module name="adventure_test" target="1.8" />
+      <module name="asdas_main" target="1.8" />
+      <module name="asdas_test" target="1.8" />
+      <module name="backend_main" target="1.8" />
+      <module name="backend_test" target="1.8" />
+      <module name="basic_main" target="1.5" />
+      <module name="basic_test" target="1.5" />
+      <module name="db_main" target="1.8" />
+      <module name="db_test" target="1.8" />
+      <module name="hello_main" target="1.8" />
+      <module name="hello_test" target="1.8" />
+      <module name="lalaland_main" target="1.8" />
+      <module name="lalaland_test" target="1.8" />
+      <module name="rest_data_center_main" target="1.8" />
+      <module name="rest_data_center_test" target="1.8" />
+      <module name="secWeb_main" target="1.8" />
+      <module name="secWeb_test" target="1.8" />
+      <module name="spring-shell-example_main" target="1.8" />
+      <module name="spring-shell-example_test" target="1.8" />
+      <module name="ToolSpace-hello_main" target="1.8" />
+      <module name="ToolSpace-hello_test" target="1.8" />
+      <module name="ToolSpace_main" target="1.8" />
+      <module name="ToolSpace_test" target="1.8" />
+      <module name="web_main" target="1.8" />
+      <module name="web_test" target="1.8" />
+      <module name="webapp_main" target="1.8" />
+      <module name="webapp_test" target="1.8" />
+      <module name="website_main" target="1.8" />
+      <module name="website_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

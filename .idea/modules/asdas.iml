@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="asdas" external.linked.project.path="$MODULE_DIR$/../../asdas" external.root.project.path="$MODULE_DIR$/../../asdas" external.system.id="GRADLE" external.system.module.group="sad" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../asdas">
+      <excludeFolder url="file://$MODULE_DIR$/../../asdas/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../asdas/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../asdas/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

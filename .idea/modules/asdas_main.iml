@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="asdas:main" external.linked.project.path="$MODULE_DIR$/../../asdas" external.root.project.path="$MODULE_DIR$/../../asdas" external.system.id="GRADLE" external.system.module.group="sad" external.system.module.type="sourceSet" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../asdas/out/production/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../asdas/src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../asdas/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../asdas/src/main/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

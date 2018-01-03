@@ -2,7 +2,35 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ToolSpace.iml" filepath="$PROJECT_DIR$/ToolSpace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToolSpace.iml" filepath="$PROJECT_DIR$/.idea/modules/ToolSpace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToolSpace-hello_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ToolSpace-hello_main.iml" group="hello" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToolSpace-hello_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ToolSpace-hello_test.iml" group="hello" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToolSpace_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ToolSpace_main.iml" group="ToolSpace" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToolSpace_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ToolSpace_test.iml" group="ToolSpace" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adventure/adventure.iml" filepath="$PROJECT_DIR$/.idea/modules/adventure/adventure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adventure/adventure_main.iml" filepath="$PROJECT_DIR$/.idea/modules/adventure/adventure_main.iml" group="adventure" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adventure/adventure_test.iml" filepath="$PROJECT_DIR$/.idea/modules/adventure/adventure_test.iml" group="adventure" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/asdas.iml" filepath="$PROJECT_DIR$/.idea/modules/asdas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/asdas_main.iml" filepath="$PROJECT_DIR$/.idea/modules/asdas_main.iml" group="asdas" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/asdas_test.iml" filepath="$PROJECT_DIR$/.idea/modules/asdas_test.iml" group="asdas" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend_main.iml" group="backend" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/backend_test.iml" group="backend" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db/db.iml" filepath="$PROJECT_DIR$/.idea/modules/db/db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db/db_main.iml" filepath="$PROJECT_DIR$/.idea/modules/db/db_main.iml" group="db" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/db/db_test.iml" filepath="$PROJECT_DIR$/.idea/modules/db/db_test.iml" group="db" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello.iml" filepath="$PROJECT_DIR$/.idea/modules/hello.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rest_data_center.iml" filepath="$PROJECT_DIR$/.idea/modules/rest_data_center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rest_data_center_main.iml" filepath="$PROJECT_DIR$/.idea/modules/rest_data_center_main.iml" group="rest_data_center" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rest_data_center_test.iml" filepath="$PROJECT_DIR$/.idea/modules/rest_data_center_test.iml" group="rest_data_center" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/secWeb/secWeb.iml" filepath="$PROJECT_DIR$/.idea/modules/secWeb/secWeb.iml" group="secWeb" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web.iml" filepath="$PROJECT_DIR$/.idea/modules/web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/web_main.iml" group="web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/web_test.iml" group="web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webapp/webapp.iml" filepath="$PROJECT_DIR$/.idea/modules/webapp/webapp.iml" group="webapp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/website.iml" filepath="$PROJECT_DIR$/.idea/modules/website.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/website_main.iml" filepath="$PROJECT_DIR$/.idea/modules/website_main.iml" group="website" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/website_test.iml" filepath="$PROJECT_DIR$/.idea/modules/website_test.iml" group="website" />
     </modules>
   </component>
 </project>
