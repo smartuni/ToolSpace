@@ -83,7 +83,7 @@ class S(BaseHTTPRequestHandler):
 
         return response
 
-def run(server_class=HTTPServer, handler_class=S, port=3000):
+def run(server_class=HTTPServer, handler_class=S, port=3001:
     # Server settings
     # Choose port 8080, for port 80, which is normally used for a http server, you need root access
     server_address = ('', port)
