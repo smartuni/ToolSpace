@@ -22,6 +22,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <inttypes.h>
 #include "string.h"
 
 #include "pn532.h"
@@ -33,9 +34,16 @@
 #include "fmt.h"
 #include "msg.h"
 #include "kernel_types.h"
+#include "thread.h"
 
 #define LOG_LEVEL LOG_INFO
 #include "log.h"
+
+#define RCV_QUEUE_SIZE  (8)
+
+static kernel_pid_t rcv_pid;
+static char rcv_stack[THREAD_STACKSIZE_DEFAULT + THREAD_EXTRA_STACKSIZE_PRINTF];
+static msg_t rcv_queue[RCV_QUEUE_SIZE];
 
 /*COAP Server
 #include "nanocoap.h"
@@ -153,6 +161,21 @@ const coap_resource_t coap_resources[] = {
 const unsigned coap_resources_numof = sizeof(coap_resources) / sizeof(coap_resources[0]);
 COAP Server*/
 
+/* Receive Message */
+ static void *rcv(void *arg)
+  {
+      msg_t msg;
+ 
+      (void)arg;
+      msg_init_queue(rcv_queue, RCV_QUEUE_SIZE);
+      while (1) {
+          msg_receive(&msg);
+          printf("Received %" PRIu32 "\n", msg.content.value);
+      }
+      return NULL;
+ }
+ /* Receive Message */
+
 void storebuff(char *buff, unsigned len, char *store)
 {
 //	char temp[1];
@@ -225,6 +248,14 @@ int main(void)
     int ret;
 	char testdaten[7]; //vorher 32
 //	char testdatenNeu[7]; // vorher 32
+
+/* Message read Thread Parameter*/
+ msg_t msg;
+ 
+      msg.content.value = 0;
+      rcv_pid = thread_create(rcv_stack, sizeof(rcv_stack),
+                              THREAD_PRIORITY_MAIN - 1, 0, rcv, NULL, "rcv");
+ /* Message read Thread Parameter*/
 	
 
 #if defined(PN532_SUPPORT_I2C)
@@ -337,9 +368,21 @@ int main(void)
 					printbuff(testdaten, 7);
 					storebuff(testdaten, 7, testdatenNeu);
 					put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
-//					memset(&testdatenNeu[0], 0, sizeof(testdatenNeu)); 
+//					memset(&testdatenNeu[0], 0, sizeof(testdatenNeu));
+					var = 0; 
+
+/* Message receive*/
+
+         if (msg_try_send(&msg, rcv_pid) == 0) {
+             printf("Receiver queue full.\n");
+         }
+         msg.content.value++;
             }
-			var = 0;
+		if (mesg.content. == 202){
+			
+		}
+			
+/* Message receive*/			
 		}}
         
         else {
