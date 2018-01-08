@@ -13,19 +13,12 @@ Send a PUT request::
 	curl -d "foo" -X PUT http://localhost
 """
 
-# turn python data structure into json data structure
-#json_str = json.dumps(data)
-
-# turn json data structure into python data structure
-#data = json.loads(json_str)
-
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from aiocoap import *
 import asyncio
 import logging
 import urllib
 import codecs
-#import jsonEncoder
 
 class S(BaseHTTPRequestHandler):
     def _set_headers(self,content):
@@ -33,7 +26,7 @@ class S(BaseHTTPRequestHandler):
             self.send_response(200)
             response = "200"
         else:
-            response = "400" #richtige ausgabe implementieren	
+            response = "400" 	
             self.send_response(400)
         # Send response status code
         #self.send_response(200)
@@ -43,15 +36,17 @@ class S(BaseHTTPRequestHandler):
         return response
 
     def do_PUT(self):
-        # Doesn't do anything with put data
         content_length = int(self.headers['Content-Length'])
         content = self.rfile.read(content_length)
         content.decode("utf-8")
 		
-        #str = "127.0.15.68#Hammer//01#0";
+		#example message
+        #"127.0.15.68#Hammer//01#0"
+		
+		#split the message by the first '#'
         newContent = content.decode("utf-8").split('#',1)
 		
-        #print (content)
+        print (content)
         #response = self._set_headers(content)
         response = self.coap_put(newContent)
         print(response)
@@ -88,7 +83,7 @@ class S(BaseHTTPRequestHandler):
 
         return response
 
-def run(server_class=HTTPServer, handler_class=S, port=80):
+def run(server_class=HTTPServer, handler_class=S, port=3000):
     # Server settings
     # Choose port 8080, for port 80, which is normally used for a http server, you need root access
     server_address = ('', port)
