@@ -360,8 +360,8 @@ int main(void)
                     break;
                 }
 				if (var == 0 && i == 0) {
-					memset(&testdatenNeu[0], 0, sizeof(testdatenNeu));
 					char testdatenNeu[7];
+					memset(&testdatenNeu[0], 0, sizeof(testdatenNeu));
 				    strcpy(testdaten, data);
 					var = 1;
 					printf("TEST\n");
