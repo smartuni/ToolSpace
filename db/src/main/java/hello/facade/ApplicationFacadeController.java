@@ -1,7 +1,16 @@
 package hello.facade;
 
+import java.io.DataInput;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
+
 import hello.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,8 +49,10 @@ class ApplicationFacadeController {
     public String getAllUser(){
         List<User> lu =  userRepository.findAll();
 	String val = "";
+	String log = "";
 	for(User u : lu){
-		val = val + "| " + u.getName() + " | " + u.getLogin() + " |";
+		log = u.getLogin().equals(1)?"Logged in":"Logged out";
+		val = val + "| " + u.getName() + " | " + log + " |\n";
 		
 	}
 	return val;
@@ -59,17 +70,30 @@ class ApplicationFacadeController {
         return n;
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE})
+    @RequestMapping(value="/login", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE}, produces = "text/plain")
     @ResponseBody
-    public User logUser(@RequestBody String user_nfc){
-	User us = userRepository.findByNfc(user_nfc);
-	if (us.getLogin() == 0){
-		us.setLogin(1);
-	} else {
-		us.setLogin(0);
+    public ResponseEntity logUser(@RequestBody String user_nfc){
+		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();	
+		String status_pos = "202";
+		String status_neg = "410";
+	try{	
+		User us = userRepository.findByNfc(user_nfc);
+		if (us.getLogin() == 0){
+			us.setLogin(1);
+		} else {
+			us.setLogin(0);
+		}
+		userRepository.saveAndFlush(us);
+
+		HttpEntity<String> requestUpdate = new HttpEntity(status_pos, headers);
+		restTemplate.exchange("http://localhost:3000", HttpMethod.GET, requestUpdate, Void.class);
+		return new ResponseEntity(HttpStatus.ACCEPTED);
+	}catch(Exception e) {
+		HttpEntity<String> requestUpdate = new HttpEntity(status_neg, headers);
+		restTemplate.exchange("http://localhost:3000", HttpMethod.GET, requestUpdate, Void.class);
+		return new ResponseEntity(HttpStatus.GONE);
 	}
-	userRepository.saveAndFlush(us);
-	return us;
     }
 
     @CrossOrigin
@@ -92,8 +116,16 @@ class ApplicationFacadeController {
     }
 
     @RequestMapping(value= "/tools", method = RequestMethod.GET)
-    public List<Tools> getAllTools(){
-        return toolsRepository.findAll();
+    public String getAllLists(){
+	List<Tools> lu =  toolsRepository.findAll();
+	String val = "";
+	String wall = "";
+	for(Tools u : lu){
+		 wall = (u.getWall().equals(0))?"Vorhanden":"Ausgeliehen";
+		 val = val + "| " + u.getName() + " | " + wall + " |\n";
+        }
+       	return val;
+
     }
 
     @RequestMapping(value= "/tools", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE}, produces = "text/plain")
