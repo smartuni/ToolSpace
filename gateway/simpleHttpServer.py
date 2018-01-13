@@ -82,6 +82,54 @@ class S(BaseHTTPRequestHandler):
         print('Result: %s\n%r' % (response.code, response.payload))
 
         return response
+		
+def do_GET(self):		
+        content_length = int(self.headers['Content-Length'])
+        content = self.rfile.read(content_length)
+        content.decode("utf-8")
+		
+		#example message
+        #"127.0.15.68#Hammer//01#0"
+		
+		#split the message by the first '#'
+        newContent = content.decode("utf-8").split('#',1)
+		
+        print (content)
+        #response = self._set_headers(content)
+        response = self.coap_get(newContent)
+        print(response)
+        self.wfile.write(response)
+
+    async def coap_get(self,content):
+        response = asyncio.get_event_loop().run_until_complete(self.coap_get_get(content))
+        return response
+
+    async def coap_get_get(self,content):
+        """Perform a single PUT request to localhost on the default port, URI
+        "/other/block". The request is sent 2 seconds after initialization.
+
+        The payload is bigger than 1kB, and thus sent as several blocks."""
+
+        context = await Context.create_client_context()
+
+        await asyncio.sleep(2)
+
+        payload = content[1]
+        # 3 = PUT
+        request = Message(code=3, payload=payload) #TODO: CHANGE TO GET CODE
+        # These direct assignments are an alternative to setting the URI like in
+        # the GET example:
+        #request.opt.uri_host = 'fe80::7b65:364c:7034:34a6%lowpan0'
+		
+        request.opt.uri_host = content[0] + '%lowpan0'
+		
+        #request.opt.uri_path = ("other", "block")
+
+        response = await context.request(request).response
+
+        print('Result: %s\n%r' % (response.code, response.payload))
+
+        return response
 
 def run(server_class=HTTPServer, handler_class=S, port=3001:
     # Server settings
