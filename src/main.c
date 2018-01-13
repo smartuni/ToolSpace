@@ -49,7 +49,7 @@ static ssize_t _riot_board_handler(coap_pkt_t* pdu, uint8_t *buf, size_t len);
 
 /* CoAP resources */
 static const coap_resource_t _resources[] = {
-    { "/riot/board", COAP_GET, _riot_board_handler },
+    { "/riot/board", COAP_PUT, _riot_board_handler },
 };	
 
 /* Counts requests sent by CLI. */
