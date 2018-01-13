@@ -22,7 +22,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <inttypes.h>
 #include "string.h"
 
 #include "pn532.h"
@@ -34,43 +33,38 @@
 #include "fmt.h"
 #include "msg.h"
 #include "kernel_types.h"
-#include "thread.h"
 
 #define LOG_LEVEL LOG_INFO
 #include "log.h"
-
-#define RCV_QUEUE_SIZE  (8)
-
-static kernel_pid_t rcv_pid;
-static char rcv_stack[THREAD_STACKSIZE_DEFAULT + THREAD_EXTRA_STACKSIZE_PRINTF];
-static msg_t rcv_queue[RCV_QUEUE_SIZE];
-
-/*COAP Server
-#include "nanocoap.h"
-#include "nanocoap_sock.h"
-#define COAP_INBUF_SIZE (256U)
-
-#define MAIN_QUEUE_SIZE     (8)
-COAP Server*/
 
 
 #define CROSSCOAP_PORT ("5683")
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
-/*COAP Server
-static msg_t _main_msg_queue[MAIN_QUEUE_SIZE];
-
-// import "ifconfig" shell command, used for printing addresses 
-extern int _netif_config(int argc, char **argv);
-COAP */
 
 static void _resp_handler(unsigned req_state, coap_pkt_t* pdu,
                           sock_udp_ep_t *remote);
-						  
+static ssize_t _riot_board_handler(coap_pkt_t* pdu, uint8_t *buf, size_t len);
+
+/* CoAP resources */
+static const coap_resource_t _resources[] = {
+    { "/riot/board", COAP_GET, _riot_board_handler },
+};	
 
 /* Counts requests sent by CLI. */
-static uint16_t req_count = 0;						  
+static uint16_t req_count = 0;				  
+	
+
+static ssize_t _riot_board_handler(coap_pkt_t *pdu, uint8_t *buf, size_t len)
+{
+    gcoap_resp_init(pdu, buf, len, COAP_CODE_CONTENT);
+    /* write the RIOT board name in the response buffer */
+    memcpy(pdu->payload, RIOT_BOARD, strlen(RIOT_BOARD));
+	LED0_TOGGLE;
+    return gcoap_finish(pdu, strlen(RIOT_BOARD), COAP_FORMAT_TEXT);
+}
+				  
 
 static void printbuff(char *buff, unsigned len)
 {
@@ -120,61 +114,6 @@ static void _resp_handler(unsigned req_state, coap_pkt_t* pdu,
     }
 }
 
-/*COAP Server
-static ssize_t _riot_value_handler(coap_pkt_t *pkt, uint8_t *buf, size_t len)
-{
-    ssize_t p = 0;
-    char rsp[16];
-    unsigned code = COAP_CODE_EMPTY;
-
-    // read coap method type in packet 
-    unsigned method_flag = coap_method2flag(coap_get_code_detail(pkt));
-
-    switch(method_flag) {
-    case COAP_GET:
-        // write the response buffer with the internal value 
-        p += fmt_u32_dec(rsp, internal_value);
-        code = COAP_CODE_205;
-        break;
-    case COAP_PUT:
-    case COAP_POST:
-    {
-        // convert the payload to an integer and update the internal value 
-        char payload[16] = { 0 };
-        memcpy(payload, (char*)pkt->payload, pkt->payload_len);
-        internal_value = strtol(payload, NULL, 10);
-        code = COAP_CODE_CHANGED;
-    }
-    }
-
-    return coap_reply_simple(pkt, code, buf, len,
-            COAP_FORMAT_TEXT, (uint8_t*)rsp, p);
-}
-
-// must be sorted by path (alphabetically) 
-const coap_resource_t coap_resources[] = {
-    COAP_WELL_KNOWN_CORE_DEFAULT_HANDLER,
-    { "/riot/board", COAP_GET, _riot_board_handler },
-    { "/riot/value", COAP_GET | COAP_PUT | COAP_POST, _riot_value_handler },
-};
-
-const unsigned coap_resources_numof = sizeof(coap_resources) / sizeof(coap_resources[0]);
-COAP Server*/
-
-/* Receive Message */
- static void *rcv(void *arg)
-  {
-      msg_t msg;
- 
-      (void)arg;
-      msg_init_queue(rcv_queue, RCV_QUEUE_SIZE);
-      while (1) {
-          msg_receive(&msg);
-          printf("Received %" PRIu32 "\n", msg.content.value);
-      }
-      return NULL;
- }
- /* Receive Message */
 
 void storebuff(char *buff, unsigned len, char *store)
 {
@@ -248,14 +187,6 @@ int main(void)
     int ret;
 	char testdaten[7]; //vorher 32
 //	char testdatenNeu[7]; // vorher 32
-
-/* Message read Thread Parameter*/
- msg_t msg;
- 
-      msg.content.value = 0;
-      rcv_pid = thread_create(rcv_stack, sizeof(rcv_stack),
-                              THREAD_PRIORITY_MAIN - 1, 0, rcv, NULL, "rcv");
- /* Message read Thread Parameter*/
 	
 
 #if defined(PN532_SUPPORT_I2C)
@@ -279,22 +210,6 @@ int main(void)
 
     ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
     LOG_INFO("set sam %d\n", ret);
-	
-	/* COAP Server
-	
-	// nanocoap_server uses gnrc sock which uses gnrc which needs a msg queue 
-    msg_init_queue(_main_msg_queue, MAIN_QUEUE_SIZE);
-
-    puts("Waiting for address autoconfiguration...");
-    xtimer_sleep(3);
-
-    // print network addresses 
-    puts("Configured network interfaces:");
-    _netif_config(0, NULL);
-	uint8_t buf[COAP_INBUF_SIZE];
-    sock_udp_ep_t local = { .port=COAP_PORT, .family=AF_INET6 };
-    nanocoap_server(&local, buf, sizeof(buf));
-	 COAP Server*/
 	
 	
 
@@ -368,21 +283,8 @@ int main(void)
 					printbuff(testdaten, 7);
 					storebuff(testdaten, 7, testdatenNeu);
 					put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
-//					memset(&testdatenNeu[0], 0, sizeof(testdatenNeu));
-					var = 0; 
-
-/* Message receive*/
-
-         if (msg_try_send(&msg, rcv_pid) == 0) {
-             printf("Receiver queue full.\n");
-         }
-         msg.content.value++;
             }
-		if (mesg.content. == 202){
-			
-		}
-			
-/* Message receive*/			
+			var = 0;
 		}}
         
         else {
