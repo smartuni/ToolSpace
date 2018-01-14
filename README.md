@@ -42,7 +42,7 @@ The variable `testdatenNeu` contains the NFC tag, send to the `LoginRepository` 
 
 The gateway has its use in translating `COAP` to `HTTP` or backwards. The commmunication to the Riot boards works via COAP and with the backend HTTP is spoken. This translation exspires via `CrossCOAP` (GO). The commmunication to the backendserver runs via HAW router and the internet. Communicate out of the HAW wokrs fine, but wehn the backendservers tries to answer the gateway request, it ist not allowed to use any of the router ports. First solution would be, to unlock a port, but that is to difficulte and not allowed in the university. The second solution is, to assamble an SSH tunnel. The process for assambling the SSH tunnel will look like:
 
-``` http
+``` cpp
 ...
 pi@raspberrypi:~cd .ssh		
 pi@raspberrypi:~cat id_rsa.pub		//show publickey
