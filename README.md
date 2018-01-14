@@ -26,7 +26,22 @@ To return the tools, the user only has to place the tool back to the tool wall.
 # System Overview
    
 ![Planungsübersicht](images/aufbau_Toolspace.JPG)
-   
+
+
+## Sensor
+
+For detecting the tools at the wall or for logging into the Toolstation, we use NFC tags. The RIOT Bord is connected with NFC sensors. Every information about the system will be send to the backend, where it will be handled and stored. For example the login of an already registered user looks like:
+
+``` c
+put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
+```
+
+## Gateway
+
+## Backend
+
+## Frontend
+
 # ToDo Overview
 - [x] README.md erstellen
 - [ ] Milestones:
