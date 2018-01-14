@@ -36,7 +36,32 @@ For detecting the tools at the wall or for logging into the Toolstation, we use 
 put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
 ```
 
+The variable `testdatenNeu` contains the NFC tag, send to the `LoginRepository` of the `Applicatinfaceadecontroller` in the backend via gateway. When a user tries to log in, a green or red LED will signalize the success or fail.
+
 ## Gateway
+
+The gateway has its use in translating `COAP` to `HTTP` or backwards. The commmunication to the Riot boards works via COAP and with the backend HTTP is spoken. This translation exspires via `CrossCOAP` (GO). The commmunication to the backendserver runs via HAW router and the internet. Communicate out of the HAW wokrs fine, but wehn the backendservers tries to answer the gateway request, it ist not allowed to use any of the router ports. First solution would be, to unlock a port, but that is to difficulte and not allowed in the university. The second solution is, to assamble an SSH tunnel. The process for assambling the SSH tunnel will look like:
+
+``` c
+...
+pi@raspberrypi:~cd .ssh		
+pi@raspberrypi:~cat id_rsa.pub		//show publickey
+ssh-rsa XXX pi@raspberrypi		//copy all
+
+****************************Shell changing to Servername@user:~$
+Servername@user:~$ cd .ssh
+Servername@user:~/.ssh$ ls	//no authorized_keys avalible
+Servername@user:~/.ssh$ nano authorized_keys // copy "ssh-rsa XXX pi@raspberrypi" into the file
+Servername@user:~/.ssh$ ls	//control for authorization
+authorized_keys				// Keys authorized
+Servername@user:~/.ssh$ chmod 600 authorized_keys	//authorization
+
+****************************Shell changing to pi@raspberrypi~ $
+pi@raspberrypi~ $ ssh -fN -R 3000:localhost:3001 Servername@000.000.000.000 //reverse ssh
+//3001: Server
+//3000: Raspy an Servererver
+...
+```
 
 ## Backend
 
