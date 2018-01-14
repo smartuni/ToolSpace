@@ -65,7 +65,7 @@ pi@raspberrypi~ $ ssh -fN -R 3000:localhost:3001 Servername@000.000.000.000 //re
 
 ## Backend
 
-In the backend most of the logic processing and handling happens. Communication to the gateway works via HTTP. The whole back- and frontend is build with the `Spring Framework` and `Angular`. For the first try of a working webserver we used `Apache2` and `PHP`. The database is build up with `MySQL`. There are two databases, one for the user (name, userLevel, logStatus, userHash) and one for all tools (name, toolLevel, atWall, atRoom). Via REST all information is shown on our [website](http://141.22.28.87/). The `ApplicationfacadeController.java`, written in TypeScript, handles every actions for the Back- and Frontend. The following Code shows the handeling of the login (`/login`) request. When the user NFC tag, that was transmitted by the gateway, is found in the user database, the function returns a "202" (acceptet). Taht will be transmitted via SSH tunnel(`http://localhost:3000`) to the gateway.
+In the backend most of the logic processing and handling happens. Requests from the gateway works via HTTP. The whole Back- and Frontend is build with the `Spring Framework` and `Angular`. For the first try of a working webserver we used `Apache2` and `PHP`. The database is build up with `MySQL`. There are two databases, one for the user (name, userLevel, logStatus, userHash) and one for all tools (name, toolLevel, atWall, atRoom). Via REST all information is shown on our [Toolspace website](http://141.22.28.87/). The `ApplicationFacadeController`, written in TypeScript, handles every actions for the Back- and Frontend. The following Code shows the handeling of the login (`/login`) request. When the user NFC tag, that was transmitted by the gateway, is found in the user database, the function returns a "202" (acceptet). That will be transmitted via SSH tunnel(`http://localhost:3000`) to the gateway.
 
 ``` ts
     @RequestMapping(value="/login", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE}, produces = "text/plain")
@@ -97,4 +97,27 @@ In the backend most of the logic processing and handling happens. Communication 
 
 ## Frontend
 
+The frontend is designed, to show all relevant Toolspace information to the user, like who is logged in or which tool is borrowed. Simple buttons can be clicked to show the desired information. The following code displays the formatted user table on the website:
 
+``` ts
+ @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String getAllUser(){
+        List<User> lu =  userRepository.findAll();
+        String val = "";
+        String log = "";
+        for(User u : lu){
+                log = u.getLogin().equals(1)?"Logged in":"Logged out";
+                val = val + "| " + u.getName() + " | " + log + " |\n";
+
+        }
+        return val;
+    }
+```
+
+``` html
+| Nina    | Logged in  |
+| Andreas | Logged out |
+| Tim     | Logged in  |
+| Simon   | Logged out |
+| Peter   | Logged out |
+```
