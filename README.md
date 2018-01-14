@@ -10,7 +10,7 @@ At the entrance of the workspace, the user sign in by NFC. To rent a tool, the u
 Every tool and every user has his unigue NFC tag. 
 To return the tools, the user only has to place the tool back to the tool wall.
         
-![Toolspaceübersicht](images/ToolSpace_Uebersicht.png)
+![Toolspaceübersicht](images/ToolSpace_Uebersicht.jpg)
 
 **Toolwall**
   
@@ -25,7 +25,7 @@ To return the tools, the user only has to place the tool back to the tool wall.
     
 # System Overview
    
-![Planungsübersicht](images/Planungs%C3%BCbersicht_ToolSpace.png)
+![Planungsübersicht](images/aufbau_Toolspace.JPG)
    
 # ToDo Overview
 - [x] README.md erstellen
