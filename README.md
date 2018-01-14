@@ -36,11 +36,11 @@ For detecting the tools at the wall or for logging into the Toolstation, we use 
 put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
 ```
 
-The variable `testdatenNeu` contains the NFC tag, send to the `LoginRepository` of the `Applicatinfaceadecontroller` in the backend via gateway. When a user tries to log in, a green or red LED will signalize the success or fail.
+The variable `testdatenNeu` contains the NFC tag, send to the `LoginRepository` of the `Applicatinfaceadecontroller` in the backend via gateway. When a user tries to log in, a green or red LED will signalize the success or failure.
 
 ## Gateway
 
-The gateway has its use in translating `COAP` to `HTTP` or backwards. The commmunication to the Riot boards works via COAP and with the backend HTTP is spoken. This translation exspires via `CrossCOAP` (GO). The commmunication to the backendserver runs via HAW router and the internet. Communicate out of the HAW wokrs fine, but wehn the backendservers tries to answer the gateway request, it ist not allowed to use any of the router ports. First solution would be, to unlock a port, but that is to difficulte and not allowed in the university. The second solution is, to assamble an SSH tunnel. The process for assambling the SSH tunnel will look like:
+The gateway has its use in translating `COAP` to `HTTP` or backwards. The commmunication to the Riot boards works via COAP and with the backend via HTTP. This translation is handled via `CrossCOAP` (GO). The commmunication to the backendserver runs via HAW router and the internet. Communication out of the HAW works fine, but wehn the backendservers tries to answer the gateway request, it ist not allowed to use any of the router ports. A first solution would be, to unlock a port, but that is to difficult and not allowed in the university. The second solution is, to use an SSH tunnel. The process for assambling the SSH tunnel will look like:
 
 ``` go
 ...
@@ -97,7 +97,11 @@ In the backend most of the logic processing and handling happens. Requests from 
 
 ## Frontend
 
-The frontend is designed, to show all relevant Toolspace information to the user, like who is logged in or which tool is borrowed. Simple buttons can be clicked to show the desired information. The following code displays the formatted user table on the website:
+The frontend is designed, to show all relevant Toolspace information to the user, like who is logged in or which tool is borrowed. Simple buttons can be clicked to show the desired information. 
+
+![Websitdesign](images/website.JPG)
+
+The following code displays the formatted user table on the website:
 
 ``` ts
  @RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -115,9 +119,13 @@ The frontend is designed, to show all relevant Toolspace information to the user
 ```
 
 ``` html
+| User    | Status     |
+------------------------
 | Nina    | Logged in  |
 | Andreas | Logged out |
 | Tim     | Logged in  |
 | Simon   | Logged out |
 | Peter   | Logged out |
 ```
+
+Starting the WebApp in the `git/Toolspace/db` folder running the `./gradlew bootrun` command.
