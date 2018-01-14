@@ -65,15 +65,36 @@ pi@raspberrypi~ $ ssh -fN -R 3000:localhost:3001 Servername@000.000.000.000 //re
 
 ## Backend
 
+In the backend most of the logic processing and handling happens. Communication to the gateway works via HTTP. The whole back- and frontend is build with the `Spring Framework` and `Angular`. For the first try of a working webserver we used `Apache2` and `PHP`. The database is build up with `MySQL`. There are two databases, one for the user (name, userLevel, logStatus, userHash) and one for all tools (name, toolLevel, atWall, atRoom). Via REST all information is shown on our [website](http://141.22.28.87/). The `ApplicationfacadeController.java`, written in TypeScript, handles every actions for the Back- and Frontend. The following Code shows the handeling of the login (`/login`) request. When the user NFC tag, that was transmitted by the gateway, is found in the user database, the function returns a "202" (acceptet). Taht will be transmitted via SSH tunnel(`http://localhost:3000`) to the gateway.
+
+``` ts
+    @RequestMapping(value="/login", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE}, produces = "text/plain")
+    @ResponseBody
+    public ResponseEntity logUser(@RequestBody String user_nfc){
+                RestTemplate restTemplate = new RestTemplate();
+                HttpHeaders headers = new HttpHeaders();
+                String status_pos = "202";
+                String status_neg = "410";
+        try{
+                User us = userRepository.findByNfc(user_nfc);
+                if (us.getLogin() == 0){
+                        us.setLogin(1);
+                } else {
+                        us.setLogin(0);
+                }
+                userRepository.saveAndFlush(us);
+
+                HttpEntity<String> requestUpdate = new HttpEntity(status_pos, headers);
+                ResponseEntity<String> something = restTemplate.exchange("http://localhost:3000", HttpMethod.PUT, requestUpdate, String.class);
+                return new ResponseEntity(HttpStatus.ACCEPTED);
+        }catch(Exception e) {
+                HttpEntity<String> requestUpdate = new HttpEntity(status_neg, headers);
+                restTemplate.exchange("http://localhost:3000", HttpMethod.PUT, requestUpdate, Void.class);
+                return new ResponseEntity(HttpStatus.GONE);
+        }
+    }
+```
+
 ## Frontend
 
-# ToDo Overview
-- [x] README.md erstellen
-- [ ] Milestones:
-  - [ ] Präsentation des Projekts
-  - [ ] First Mock-Up Demo
-  - [ ] Release Candidate 1
-  - [ ] Final Presentation
-- [x] list syntax required (any unordered or ordered list supported)
-- [x] this is a complete item
-- [ ] this is an incomplete item
+
