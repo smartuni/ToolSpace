@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n\t{{title}}\n</h1>\n<button (click)=\"printUsers()\">Nutzer</button>\n<button (click)=\"printTools()\">Werkzeuge</button>\n<button (click)=\"printSensor()\">Sensordaten</button>\n<button (click)=\"printSKData()\">Smartkitchen</button>\n<a href=\"table.html\" target = \"_self\"><button>Table</button></a>\n<br/>\n<br/>\n<br/>\n<div><pre>{{result}}</pre></div>\n"
+module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"UFT-8\">\n\t</head>\n\t<body>\n\t\t<h1>\n\t\t{{title}}\n\t\t</h1>\n\t\t<button (click)=\"printUsers()\">Nutzer</button>\n\t\t<button (click)=\"printTools()\">Werkzeuge</button>\n\t\t<a href=\"table.html\" target = \"_self\"><button>Table</button></a>\n\t\t<br/>\n\t\t<br/>\n\t\t<br/>\n\t\t<div><pre>{{result}}</pre></div>\n\t</body>\n</html>\n"
 
 /***/ }),
 

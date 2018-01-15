@@ -19,12 +19,22 @@ public class Tools {
 
     private Integer rent;
 
+    private String nfc;
+
     public Integer getRent() {
         return rent;
     }
 
     public void setRent(Integer rent) {
         this.rent = rent;
+    }
+
+    public String getNfc() {
+	return nfc;
+    }
+
+    public void setNfc(String nfc) {
+	this.nfc = nfc;
     }
 
     public Integer getWall() {

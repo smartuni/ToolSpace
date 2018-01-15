@@ -75,8 +75,8 @@ class ApplicationFacadeController {
     public ResponseEntity logUser(@RequestBody String user_nfc){
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();	
-		String status_pos = "202";
-		String status_neg = "410";
+		String status_pos = "fe80::7b65:364c:7034:34a6/64!202";
+		String status_neg = "fe80::7b65:364c:7034:34a6/64!410";
 	try{	
 		User us = userRepository.findByNfc(user_nfc);
 		if (us.getLogin() == 0){
@@ -125,11 +125,21 @@ class ApplicationFacadeController {
 	}
     }
 
+    @RequestMapping(value= "/order", method = RequestMethod.GET)
+    public ResponseEntity orderScrews(@RequestBody String order) {
+	try{
+	System.out.println("Schrauben werden nachbestellt");
+	return new ResponseEntity(HttpStatus.ACCEPTED);
+	}catch(Exception e) {
+	return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+	}
+    }
+
     @RequestMapping(value= "/tools", method = RequestMethod.GET)
     public String getAllLists(){
 	List<Tools> lu =  toolsRepository.findAll();
-	String val = "";
 	String wall = "";
+	String val = "| " + " Tool   " + " | " + " Status  " + " |\n" + "-----------------------\n";
 	for(Tools u : lu){
 		 wall = (u.getWall().equals(0))?"Vorhanden":"Ausgeliehen";
 		 val = val + "| " + u.getName() + " | " + wall + " |\n";
@@ -149,5 +159,22 @@ class ApplicationFacadeController {
         }catch(Exception e){
             return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
         }
+    }
+	
+    @RequestMapping(value="/rent", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE}, produces = "text/plain")
+    @ResponseBody
+    public ResponseEntity rentTool(@RequestBody String tool_nfc){
+	try{	
+		Tools ts = toolsRepository.findByNfc(tool_nfc);
+		if (ts.getRent() == 0){
+			ts.setRent(1);
+		} else {
+			ts.setRent(0);
+		}
+		toolsRepository.saveAndFlush(ts);
+		return new ResponseEntity(HttpStatus.ACCEPTED);
+	}catch(Exception e) {
+		return new ResponseEntity(HttpStatus.GONE);
+	}
     }
 }

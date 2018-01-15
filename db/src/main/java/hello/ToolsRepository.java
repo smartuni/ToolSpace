@@ -14,5 +14,6 @@ import java.util.Optional;
 
 public interface ToolsRepository extends JpaRepository<Tools, Long> {
     Optional<Tools> findByName(String name);
+    Tools findByNfc(String nfc);
 
 }
