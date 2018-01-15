@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"UFT-8\">\n\t</head>\n\t<body>\n\t\t<h1>\n\t\t{{title}}\n\t\t</h1>\n\t\t<button (click)=\"printUsers()\">Nutzer</button>\n\t\t<button (click)=\"printTools()\">Werkzeuge</button>\n\t\t<button (click)=\"printSensor()\">Sensordaten</button>\n\t\t<button (click)=\"printSKData()\">Smartkitchen</button>\n\t\t<a href=\"table.html\" target = \"_self\"><button>Table</button></a>\n\t\t<br/>\n\t\t<br/>\n\t\t<br/>\n\t\t<div><pre>{{result}}</pre></div>\n\t</body>\n</html>\n"
+module.exports = "<h1>\n\t{{title}}\n</h1>\n<button (click)=\"printUsers()\">Nutzer</button>\n<button (click)=\"printTools()\">Werkzeuge</button>\n<button (click)=\"printSensor()\">Sensordaten</button>\n<button (click)=\"printSKData()\">Smartkitchen</button>\n<a href=\"table.html\" target = \"_self\"><button>Table</button></a>\n<br/>\n<br/>\n<br/>\n<div><pre>{{result}}</pre></div>\n"
 
 /***/ }),
 
@@ -47,7 +47,6 @@ module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta chars
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
-/* unused harmony export LineChartDemoComponent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -104,73 +103,6 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 
-var LineChartDemoComponent = (function () {
-    function LineChartDemoComponent() {
-        // lineChart
-        this.lineChartData = [
-            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-            { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
-        ];
-        this.lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-        this.lineChartOptions = {
-            responsive: true
-        };
-        this.lineChartColors = [
-            {
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-            },
-            {
-                backgroundColor: 'rgba(77,83,96,0.2)',
-                borderColor: 'rgba(77,83,96,1)',
-                pointBackgroundColor: 'rgba(77,83,96,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(77,83,96,1)'
-            },
-            {
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-            }
-        ];
-        this.lineChartLegend = true;
-        this.lineChartType = 'line';
-    }
-    LineChartDemoComponent.prototype.randomize = function () {
-        var _lineChartData = new Array(this.lineChartData.length);
-        for (var i = 0; i < this.lineChartData.length; i++) {
-            _lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
-            for (var j = 0; j < this.lineChartData[i].data.length; j++) {
-                _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-            }
-        }
-        this.lineChartData = _lineChartData;
-    };
-    // events
-    LineChartDemoComponent.prototype.chartClicked = function (e) {
-        console.log(e);
-    };
-    LineChartDemoComponent.prototype.chartHovered = function (e) {
-        console.log(e);
-    };
-    LineChartDemoComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'line-chart-demo',
-            template: __webpack_require__("../../../../../src/app/table.html")
-        })
-    ], LineChartDemoComponent);
-    return LineChartDemoComponent;
-}());
-
 
 
 /***/ }),
@@ -221,13 +153,6 @@ var AppModule = (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "../../../../../src/app/table.html":
-/***/ (function(module, exports) {
-
-module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset= \"UTF-8\">\n\t\t\n\t\t<script src=\"node_modules/chart.js/src/chart.js\"></script>\n\t</head>\n\t<body>\n\t\t<h1>{{title}}</h1>\n\t\t<button (click)=\"printUsers()\">Nutzer</button>\n\t\t<button (click)=\"printTools()\">Werkzeuge</button>\n\t\t<button (click)=\"printSensor()\">Sensordaten</button>\n\t\t<button (click)=\"printSKData()\">Smartkitchen</button>\n\t\t<a href=\"table.html\" target=\"_self\"><button>Table</button></a>\n\t\t<br/>\n\t\t<br/>\n\t\t<div>\n\t\t\t<pre>{{result}}</pre>\n\t\t</div>\n\t\t<br/>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-md-6\">\n\t\t\t\t<div style=\"display: block;\">\n\t\t\t\t\t<canvas baseChart width=\"400\" height=\"400\"\n\t\t\t\t\t       [datasets]=\"lineChartData\"\n\t\t\t\t\t       [labels]=\"lineChartLabels\"\n\t\t\t\t\t       [options]=\"lineChartOptions\"\n\t\t\t\t\t       [colors]=\"lineChartColors\" \n\t\t\t\t\t       [legend]=\"lineChartLegend\" \n\t\t\t\t\t       [chartType]=\"lineChartType\" \n\t\t\t\t\t       (chartHover)=\"chartHovered($event)\" \n\t\t\t\t\t       (chartClick)=\"chartClicked($event)\">\n\t\t\t\t\t</canvas>\n\t\t\t\t</div>\n\t\t       \t</div>\n\t\t       \t<div class=\"col-md-6\" style=\"margin-bottom: 10px\">\n\t\t\t       \t<table class=\"table table-responsive table-condensed\">\n\t\t\t\t\t<tr></tr>\n\t\t\t\t\t<tr *ngFor=\"let d of lineChartData\">\n\t\t\t\t\t<td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</table>\n\t\t\t\t<button (click)=\"randomize()\">CLICK</button>\n\t\t\t</div>\n\t\t</div>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \n\t</body>\n</html>\n\n"
 
 /***/ }),
 

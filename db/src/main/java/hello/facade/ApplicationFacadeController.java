@@ -48,7 +48,7 @@ class ApplicationFacadeController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String getAllUser(){
         List<User> lu =  userRepository.findAll();
-	String val = "";
+	String val = "| " + " User    " + "| " + " Status  " + " |\n" + "------------------------\n";
 	String log = "";
 	for(User u : lu){
 		log = u.getLogin().equals(1)?"Logged in":"Logged out";
@@ -87,14 +87,24 @@ class ApplicationFacadeController {
 		userRepository.saveAndFlush(us);
 
 		HttpEntity<String> requestUpdate = new HttpEntity(status_pos, headers);
-		restTemplate.exchange("http://localhost:3000", HttpMethod.GET, requestUpdate, Void.class);
+		ResponseEntity<String> something = restTemplate.exchange("http://localhost:3000", HttpMethod.PUT, requestUpdate, String.class);
 		return new ResponseEntity(HttpStatus.ACCEPTED);
 	}catch(Exception e) {
 		HttpEntity<String> requestUpdate = new HttpEntity(status_neg, headers);
-		restTemplate.exchange("http://localhost:3000", HttpMethod.GET, requestUpdate, Void.class);
+		restTemplate.exchange("http://localhost:3000", HttpMethod.PUT, requestUpdate, Void.class);
 		return new ResponseEntity(HttpStatus.GONE);
 	}
     }
+
+    @RequestMapping(value = "/lamp", method = RequestMethod.GET)
+	    public ResponseEntity toggleLamp() {
+		    RestTemplate restTemplate = new RestTemplate();
+		    HttpHeaders headers = new HttpHeaders();
+		    String command = "fe80::7b67:264c:7034:34a6/64#1#1";
+		    HttpEntity<String> requestUpdate = new HttpEntity(command, headers);
+		    ResponseEntity<String> something = restTemplate.exchange("http://localhost:3000", HttpMethod.PUT, requestUpdate, String.class);
+		    return new ResponseEntity(HttpStatus.ACCEPTED);
+	    }
 
     @CrossOrigin
     @RequestMapping(value = "/sensor", method = RequestMethod.GET)
