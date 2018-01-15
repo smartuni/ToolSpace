@@ -36,7 +36,7 @@ For detecting the tools at the wall or for logging into the Toolstation, we use 
 put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
 ```
 
-The Code is found in the [sensorik-repository](https://github.com/smartuni/ToolSpace/tree/sensorik/src) `main.c`
+The Code can be found in the [sensorik-repository](https://github.com/smartuni/ToolSpace/tree/sensorik/src) `main.c`.
 The variable `testdatenNeu` contains the NFC tag, send to the `LoginRepository` of the `Applicatinfaceadecontroller` in the backend via gateway. When a user tries to log in, a green or red LED will signalize the success or failure.
 
 ## Gateway
