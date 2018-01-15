@@ -140,4 +140,21 @@ class ApplicationFacadeController {
             return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
         }
     }
+	
+    @RequestMapping(value="/rent", method = RequestMethod.PUT, consumes = {MediaType.TEXT_PLAIN_VALUE}, produces = "text/plain")
+    @ResponseBody
+    public ResponseEntity rentTool(@RequestBody String tool_nfc){
+	try{	
+		Tools ts = toolsRepository.findByNfc(tool_nfc);
+		if (us.getRent() == 0){
+			us.setRent(1);
+		} else {
+			us.setRent(0);
+		}
+		toolsRepository.saveAndFlush(us);
+		return new ResponseEntity(HttpStatus.ACCEPTED);
+	}catch(Exception e) {
+		return new ResponseEntity(HttpStatus.GONE);
+	}
+    }
 }
