@@ -1,22 +1,12 @@
-/*
- * Copyright (C) 2016 TriaGnoSys GmbH
- *
- * This file is subject to the terms and conditions of the GNU Lesser
- * General Public License v2.1. See the file LICENSE in the top level
- * directory for more details.
- */
-
 /**
- * @ingroup tests
- * @{
  *
  * @file
- * @brief       Test application for the PN532 NFC reader
- *
- * @author      Víctor Ariño <victor.arino@triagnosys.com>
+ * @brief       This is the main function for the toolstation with a nfc bord, a gauge and a Reed Sensor.
+ * @author      Sabrina Sendel <sabrina.sendel@haw-hamburg.de>, Johannes Rohling <johannes.rohling@haw-hamburg.de> and Bila Ouedraogo <bila.ouedraogo@haw-hamburg.de
  *
  * @}
  */
+
 
 #include "board.h"
 #include <stdint.h>
@@ -37,11 +27,30 @@
 #define LOG_LEVEL LOG_INFO
 #include "log.h"
 
+#include "periph/gpio.h"
+#include "periph/adc.h"
+
+#include "shell.h"
+
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+
+#define RES             ADC_RES_10BIT
+#define  LEDPIN  GPIO_PIN(0, 19) // PIN wird mit der Variable LED festgelegt
+
 
 #define CROSSCOAP_PORT ("5683")
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
+//Vordefinierung der GPIO_Pins
+#define Pin_13 GPIO_PIN(PA13.port,PA13.pin)
+#define Pin_28 GPIO_PIN(PA28.port,PA28.pin)
+
+
+//static const shell_command_t shell_commands[] = {	{ NULL, NULL, NULL }	};
+
+
+int test;
 
 static void _resp_handler(unsigned req_state, coap_pkt_t* pdu,
                           sock_udp_ep_t *remote);
@@ -53,8 +62,27 @@ static const coap_resource_t _resources[] = {
 };	
 
 /* Counts requests sent by CLI. */
-static uint16_t req_count = 0;				  
+static uint16_t req_count = 0;	
+
+
+//Struktur für GPIO Parameter
+typedef struct {
+	int pin;
+	int port;
+} param_t;
+
+//Vergeben der Parameter für die GPIOs (Port und Pin)
+param_t PA13 = {.port = 0, .pin = 13};
+param_t PA28 = {.port = 0, .pin = 28};
+			  
 	
+
+static void cb(void *arg){
+	//Callback mit Ausgabe des Ports, des Pins und des Status
+	param_t * p = (param_t*)arg;
+    printf("Port:\t%i\nPin:\t%i\nStatus:%d\n\n", p->port, p->pin, gpio_read(GPIO_PIN(p->port,p->pin) ) );
+}
+
 
 static ssize_t _riot_board_handler(coap_pkt_t *pdu, uint8_t *buf, size_t len)
 {
@@ -178,6 +206,27 @@ int put(char *adr, char *pth, char *data)
 }
 
 
+int gewicht_init_adc(void){
+  for (int i = 0; i < ADC_NUMOF; i++) {
+      if (adc_init(ADC_LINE(i)) < 0) {
+          return 1;
+      }
+  }
+  return 0;
+}
+
+int gewicht_read_adc(int pin){
+  // Einlesen des ADC
+  int sample = adc_sample(ADC_LINE(pin), RES);
+  if (sample < 0) {
+    // Fehler
+      return -1;
+  } else {
+    return sample;
+  }
+}
+
+
 int main(void)
 {
     static char data[16];
@@ -185,8 +234,9 @@ int main(void)
     static pn532_t pn532;
     unsigned len;
     int ret;
-	char testdaten[7]; //vorher 32
-//	char testdatenNeu[7]; // vorher 32
+//	char werzeug_id[7]; // vorher 32
+
+
 	
 
 #if defined(PN532_SUPPORT_I2C)
@@ -211,17 +261,39 @@ int main(void)
     ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
     LOG_INFO("set sam %d\n", ret);
 	
+	gpio_init (LEDPIN, GPIO_OUT);
+	adc_init(0);
+	gewicht_init_adc();	
+	int aktiv = 0;
 	
 
     while (1) {
         /* Delay not to be always polling the interface */
         xtimer_usleep(250000UL);
+		
+		gpio_init_int(Pin_13, GPIO_IN_PD, GPIO_BOTH, cb, &PA13 ); 
+		gpio_init_int(Pin_28, GPIO_IN_PD, GPIO_BOTH, cb, &PA28 );
+	
 
         ret = pn532_get_passive_iso14443a(&pn532, &card, 0x50);
         if (ret < 0) {
             LOG_DEBUG("no card\n");
             continue;
         }
+
+				
+		int output = gewicht_read_adc(0);
+		// LOG_INFO("Aktueller Wert: %i \n", output);
+		char bestellung[16] = "Neue Schrauben!";
+		if(output > 900 && aktiv!= 1)
+		{
+			//LOG_INFO("Schrauben nachbestellen put Befehl wird gesendet\n \n");
+			put("fe80::1ac0:ffee:1ac0:ffee","/order", bestellung);
+			aktiv = 1;
+        } else {	
+			aktiv = 0; 
+			
+		} 
 
         if (card.type == ISO14443A_TYPE4) {
             if (pn532_iso14443a_4_activate(&pn532, &card) != 0) {
@@ -250,8 +322,6 @@ int main(void)
         else if (card.type == ISO14443A_MIFARE) {
             char key[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
             char data[32];
-//			char *tuedelchen[1] = '"';
-//			char *tuedelchen2[1] = '"';
 			int var = 0;
 
             for (int i = 0; i < 64; i++) {
@@ -275,14 +345,15 @@ int main(void)
                     break;
                 }
 				if (var == 0 && i == 0) {
-					char testdatenNeu[7];
-					memset(&testdatenNeu[0], 0, sizeof(testdatenNeu));
-				    strcpy(testdaten, data);
+					char werzeug_id[7];
+					memset(&werzeug_id[0], 0, sizeof(werzeug_id));
+				  //  strcpy(testdaten, data);
 					var = 1;
-					printf("TEST\n");
-					printbuff(testdaten, 7);
-					storebuff(testdaten, 7, testdatenNeu);
-					put("fe80::1ac0:ffee:1ac0:ffee","/login", testdatenNeu);
+					//printf("TEST\n");
+					printbuff(data, 7);
+					storebuff(data, 7, werzeug_id);
+					put("fe80::1ac0:ffee:1ac0:ffee","/rent", werzeug_id);
+					LOG_INFO("Gesendete Werzeug ID: %s\n", werzeug_id);
             }
 			var = 0;
 		}}

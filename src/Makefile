@@ -1,6 +1,6 @@
 APPLICATION = driver_pn532
 
-RIOTBASE:= ../RIOT
+RIOTBASE:= ../../RIOT
 FEATURES_REQUIRED = periph_i2c periph_gpio
 
 USEMODULE += xtimer
