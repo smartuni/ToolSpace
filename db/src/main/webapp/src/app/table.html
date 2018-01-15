@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset= "UTF-8">
+		
+		<script src="node_modules/chart.js/src/chart.js"></script>
+	</head>
+	<body>
+		<h1>{{title}}</h1>
+		<button (click)="printUsers()">Nutzer</button>
+		<button (click)="printTools()">Werkzeuge</button>
+		<button (click)="printSensor()">Sensordaten</button>
+		<button (click)="printSKData()">Smartkitchen</button>
+		<a href="table.html" target="_self"><button>Table</button></a>
+		<br/>
+		<br/>
+		<div>
+			<pre>{{result}}</pre>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-6">
+				<div style="display: block;">
+					<canvas baseChart width="400" height="400"
+					       [datasets]="lineChartData"
+					       [labels]="lineChartLabels"
+					       [options]="lineChartOptions"
+					       [colors]="lineChartColors" 
+					       [legend]="lineChartLegend" 
+					       [chartType]="lineChartType" 
+					       (chartHover)="chartHovered($event)" 
+					       (chartClick)="chartClicked($event)">
+					</canvas>
+				</div>
+		       	</div>
+		       	<div class="col-md-6" style="margin-bottom: 10px">
+			       	<table class="table table-responsive table-condensed">
+					<tr></tr>
+					<tr *ngFor="let d of lineChartData">
+					<td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+					</tr>
+				</table>
+				<button (click)="randomize()">CLICK</button>
+			</div>
+		</div>																						  
+	</body>
+</html>
+

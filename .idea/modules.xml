@@ -10,9 +10,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/adventure/adventure.iml" filepath="$PROJECT_DIR$/.idea/modules/adventure/adventure.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/adventure/adventure_main.iml" filepath="$PROJECT_DIR$/.idea/modules/adventure/adventure_main.iml" group="adventure" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/adventure/adventure_test.iml" filepath="$PROJECT_DIR$/.idea/modules/adventure/adventure_test.iml" group="adventure" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/asdas.iml" filepath="$PROJECT_DIR$/.idea/modules/asdas.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/asdas_main.iml" filepath="$PROJECT_DIR$/.idea/modules/asdas_main.iml" group="asdas" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/asdas_test.iml" filepath="$PROJECT_DIR$/.idea/modules/asdas_test.iml" group="asdas" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend.iml" filepath="$PROJECT_DIR$/.idea/modules/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend_main.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/backend_test.iml" group="backend" />
@@ -24,10 +21,17 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rest_data_center_main.iml" filepath="$PROJECT_DIR$/.idea/modules/rest_data_center_main.iml" group="rest_data_center" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rest_data_center_test.iml" filepath="$PROJECT_DIR$/.idea/modules/rest_data_center_test.iml" group="rest_data_center" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/secWeb/secWeb.iml" filepath="$PROJECT_DIR$/.idea/modules/secWeb/secWeb.iml" group="secWeb" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/secWeb/secWeb_main.iml" filepath="$PROJECT_DIR$/.idea/modules/secWeb/secWeb_main.iml" group="secWeb" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/secWeb/secWeb_test.iml" filepath="$PROJECT_DIR$/.idea/modules/secWeb/secWeb_test.iml" group="secWeb" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-shell-example.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-shell-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-shell-example_main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-shell-example_main.iml" group="spring-shell-example" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-shell-example_test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-shell-example_test.iml" group="spring-shell-example" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/web.iml" filepath="$PROJECT_DIR$/.idea/modules/web.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/web_main.iml" group="web" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/web_test.iml" group="web" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/webapp/webapp.iml" filepath="$PROJECT_DIR$/.idea/modules/webapp/webapp.iml" group="webapp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webapp/webapp_main.iml" filepath="$PROJECT_DIR$/.idea/modules/webapp/webapp_main.iml" group="webapp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webapp/webapp_test.iml" filepath="$PROJECT_DIR$/.idea/modules/webapp/webapp_test.iml" group="webapp" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/website.iml" filepath="$PROJECT_DIR$/.idea/modules/website.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/website_main.iml" filepath="$PROJECT_DIR$/.idea/modules/website_main.iml" group="website" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/website_test.iml" filepath="$PROJECT_DIR$/.idea/modules/website_test.iml" group="website" />
