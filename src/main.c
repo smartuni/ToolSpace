@@ -1,7 +1,7 @@
 /**
  *
  * @file
- * @brief       This is the main function for the toolstation with a nfc bord, a gauge and a Reed Sensor.
+ * @brief       This is the main function for the toolstation with a nfc bord, a gauge and a Reed Sensor at the workstation.
  * @author      Sabrina Sendel <sabrina.sendel@haw-hamburg.de>, Johannes Rohling <johannes.rohling@haw-hamburg.de> and Bila Ouedraogo <bila.ouedraogo@haw-hamburg.de
  *
  * @}
@@ -30,15 +30,13 @@
 #include "periph/gpio.h"
 #include "periph/adc.h"
 
-#include "shell.h"
 
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 #define RES             ADC_RES_10BIT
 #define  LEDPIN  GPIO_PIN(0, 19) // PIN wird mit der Variable LED festgelegt
 
 
-#define CROSSCOAP_PORT ("5683")
+#define CROSSCOAP_PORT ("5683") // Angesprochener Coap Port
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
@@ -46,15 +44,6 @@
 #define Pin_13 GPIO_PIN(PA13.port,PA13.pin)
 #define Pin_28 GPIO_PIN(PA28.port,PA28.pin)
 
-
-//static const shell_command_t shell_commands[] = {	{ NULL, NULL, NULL }	};
-
-
-int test;
-
-static void _resp_handler(unsigned req_state, coap_pkt_t* pdu,
-                          sock_udp_ep_t *remote);
-static ssize_t _riot_board_handler(coap_pkt_t* pdu, uint8_t *buf, size_t len);
 
 /* CoAP resources */
 static const coap_resource_t _resources[] = {
@@ -64,6 +53,9 @@ static const coap_resource_t _resources[] = {
 /* Counts requests sent by CLI. */
 static uint16_t req_count = 0;	
 
+/* Verfuegbarkeit der Werkzeuge, Messung ueber Reed Kontakt
+------------------------------------------------------------
+*/
 
 //Struktur für GPIO Parameter
 typedef struct {
@@ -83,6 +75,13 @@ static void cb(void *arg){
     printf("Port:\t%i\nPin:\t%i\nStatus:%d\n\n", p->port, p->pin, gpio_read(GPIO_PIN(p->port,p->pin) ) );
 }
 
+/*
+-------------------------------------------------------------------
+*/
+
+/*Implementation des Servers
+--------------------------------------------------------------------
+*/
 
 static ssize_t _riot_board_handler(coap_pkt_t *pdu, uint8_t *buf, size_t len)
 {
@@ -93,16 +92,17 @@ static ssize_t _riot_board_handler(coap_pkt_t *pdu, uint8_t *buf, size_t len)
     return gcoap_finish(pdu, strlen(RIOT_BOARD), COAP_FORMAT_TEXT);
 }
 				  
+/*
+----------------------------------------------------------------------
+*/
 
-static void printbuff(char *buff, unsigned len)
-{
-    while (len) {
-        len--;
-        printf("%02x ", *buff++);
-    }
-    puts("");
-}
+/*Senden ueber Coap als Client
+---------------------------------------------------------------------
+*/
 
+
+
+// Der Response handler greift das das ack(Feedback vom Gateway auf)
 static void _resp_handler(unsigned req_state, coap_pkt_t* pdu,
                           sock_udp_ep_t *remote)
 {
@@ -143,17 +143,8 @@ static void _resp_handler(unsigned req_state, coap_pkt_t* pdu,
 }
 
 
-void storebuff(char *buff, unsigned len, char *store)
-{
-//	char temp[1];
-	char temp[0];	
-	while (len){
-		len--;
-		sprintf(temp, "%02x", *buff++);
-		strcat(store, temp);
-	}
-}
 
+ // Sende Befehl für das senden ueber Coap
 static size_t _send(uint8_t *buf, size_t len, char *addr_str, char *port_str)
 {
     ipv6_addr_t addr;
@@ -184,7 +175,7 @@ static size_t _send(uint8_t *buf, size_t len, char *addr_str, char *port_str)
     return bytes_sent;
 }
 
-
+//Coap put Befehl zum Übertagen der Daten
 int put(char *adr, char *pth, char *data)
 {
   uint8_t buf[GCOAP_PDU_BUF_SIZE];
@@ -204,6 +195,46 @@ int put(char *adr, char *pth, char *data)
   return 1;
 
 }
+
+
+
+/* 				  
+static void printbuff(char *buff, unsigned len)
+{
+    while (len) {
+        len--;
+        printf("%02x ", *buff++);
+    }
+    puts("");
+}
+
+
+ */
+ 
+ /*
+ Umformatierung des NFC Tags
+ */
+ 
+ 
+void storebuff(char *buff, unsigned len, char *store)
+{
+//	char temp[1];
+	char temp[0];	
+	while (len){
+		len--;
+		sprintf(temp, "%02x", *buff++);
+		strcat(store, temp);
+	}
+}
+
+/*
+------------------------------------------------------------------------------------------------
+*/
+
+/*
+Messung des Dehnungsmessstreifen ueber den ADC und einen Widerstand
+------------------------------------------------------------------------------------------------
+*/
 
 
 int gewicht_init_adc(void){
@@ -226,6 +257,10 @@ int gewicht_read_adc(int pin){
   }
 }
 
+/*
+------------------------------------------------------------------------------------------------
+*/
+
 
 int main(void)
 {
@@ -238,7 +273,7 @@ int main(void)
 
 
 	
-
+// Initialisierung des NFC Boards pn532
 #if defined(PN532_SUPPORT_I2C)
     ret = pn532_init_i2c(&pn532, &pn532_conf[0]);
 #elif defined(PN532_SUPPORT_SPI)
@@ -260,32 +295,34 @@ int main(void)
 
     ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
     LOG_INFO("set sam %d\n", ret);
+
+// Aufruf der verwendeten Funktionen in der while-Schleife
 	
 	gpio_init (LEDPIN, GPIO_OUT);
 	adc_init(0);
 	gewicht_init_adc();	
 	int aktiv = 0;
+	int output =0;
 	
 
     while (1) {
         /* Delay not to be always polling the interface */
         xtimer_usleep(250000UL);
 		
+		
 		gpio_init_int(Pin_13, GPIO_IN_PD, GPIO_BOTH, cb, &PA13 ); 
 		gpio_init_int(Pin_28, GPIO_IN_PD, GPIO_BOTH, cb, &PA28 );
-	
-
-        ret = pn532_get_passive_iso14443a(&pn532, &card, 0x50);
-        if (ret < 0) {
-            LOG_DEBUG("no card\n");
-            continue;
-        }
-
-				
-		int output = gewicht_read_adc(0);
+		// Hier sollte das senden der Werzeug pins an den Server implementiert werden.
+		
+		/*
+		Messung des Dehnungsmessstreifen und senden per put Befehl an den Server
+		----------------------------------------------------------------------------
+		*/
+		
+		output = gewicht_read_adc(0);
 		// LOG_INFO("Aktueller Wert: %i \n", output);
 		char bestellung[16] = "Neue Schrauben!";
-		if(output > 900 && aktiv!= 1)
+		if(output < 900 && aktiv!= 1)
 		{
 			//LOG_INFO("Schrauben nachbestellen put Befehl wird gesendet\n \n");
 			put("fe80::1ac0:ffee:1ac0:ffee","/order", bestellung);
@@ -294,40 +331,31 @@ int main(void)
 			aktiv = 0; 
 			
 		} 
-
-        if (card.type == ISO14443A_TYPE4) {
-            if (pn532_iso14443a_4_activate(&pn532, &card) != 0) {
-                LOG_ERROR("act\n");
-                continue;
-
-            }
-            else if (pn532_iso14443a_4_read(&pn532, data, &card, 0x00, 2) != 0) {
-                LOG_ERROR("len\n");
-                continue;
-            }
-
-            len = PN532_ISO14443A_4_LEN_FROM_BUFFER(data);
-            len = MIN(len, sizeof(data));
-
-            if (pn532_iso14443a_4_read(&pn532, data, &card, 0x02, len) != 0) {
-                LOG_ERROR("read\n");
-                continue;
-            }
-
-            LOG_INFO("dumping card contents (%d bytes)\n", len);
-            printbuff(data, len);
-            pn532_release_passive(&pn532, card.target);
-
+	
+		//Pruefung ob Karte vorhanden ist.
+        ret = pn532_get_passive_iso14443a(&pn532, &card, 0x50);
+        if (ret < 0) {
+            LOG_DEBUG("no card\n");
+            continue;
         }
-        else if (card.type == ISO14443A_MIFARE) {
+
+		/*
+		----------------------------------------------------------------------------
+		*/				
+
+		//Pruefung des verwendeten Kartentyps
+
+        if (card.type == ISO14443A_MIFARE) {
             char key[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
             char data[32];
 			int var = 0;
 
-            for (int i = 0; i < 64; i++) {
+            //Ausgabe der Kartenbloecke
+			for (int i = 0; i < 64; i++) {
                 LOG_INFO("sector %02d, block %02d | ", i / 4, i);
 				
-                if ((i & 0x03) == 0) {
+                //Autoidentifizierung des Kartenmaterials
+				if ((i & 0x03) == 0) {
                     ret = pn532_mifareclassic_authenticate(&pn532, &card,
                                                            PN532_MIFARE_KEY_A, key, i);
                     if (ret != 0) {
@@ -350,13 +378,14 @@ int main(void)
 				  //  strcpy(testdaten, data);
 					var = 1;
 					//printf("TEST\n");
-					printbuff(data, 7);
+					//printbuff(data, 7);
 					storebuff(data, 7, werzeug_id);
-					put("fe80::1ac0:ffee:1ac0:ffee","/rent", werzeug_id);
+					put("fe80::1ac0:ffee:1ac0:ffee","/rent", werzeug_id); //Senden an den Server
 					LOG_INFO("Gesendete Werzeug ID: %s\n", werzeug_id);
-            }
+				}	
 			var = 0;
-		}}
+			}
+		}
         
         else {
             LOG_ERROR("unknown\n");
